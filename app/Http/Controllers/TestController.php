@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Redis;
 
 class TestController extends Controller {
 
+    public function getPath(){
+        $path = __DIR__ . '/../../Resources/lang/zh-CN';
+        $old = $path . DIRECTORY_SEPARATOR . 'area_code.php';
+        $dir = $path . DIRECTORY_SEPARATOR . 'Changed';
+        $new = $dir . DIRECTORY_SEPARATOR . 'area_code_' . date("Ymd_H_i_s");
+    }
+
     /**
      * 修改文件
      */
