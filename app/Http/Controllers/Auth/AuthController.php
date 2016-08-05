@@ -21,12 +21,14 @@ class AuthController extends Controller
     |
     */
 
+    protected $redirectPath = '/profile';
+    protected $loginPath = 'auth/login';
+    protected $maxLoginAttempts = 2;
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
      * Create a new authentication controller instance.
-     *
-     * @return void
+
      */
     public function __construct()
     {
