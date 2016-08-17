@@ -11,7 +11,15 @@ use Illuminate\Support\Facades\Redis;
 
 class TestController extends Controller {
 
-    public function getPath(){
+    public function __construct() {
+//        $this->middleware('test') ;
+    }
+
+    public function index() {
+        return view("layouts.Mis.master");
+    }
+
+    public function getPath() {
         $path = __DIR__ . '/../../Resources/lang/zh-CN';
         $old = $path . DIRECTORY_SEPARATOR . 'area_code.php';
         $dir = $path . DIRECTORY_SEPARATOR . 'Changed';
@@ -23,11 +31,11 @@ class TestController extends Controller {
      */
     public function indexChangeArray() {
         $data = [
-            "中国"    => 1,
-            "阿联酋"   => 2,
-            "韩国"    => 3,
-            "日本"    => 4,
-            "泰国"    => 5,
+            "中国"  => 1,
+            "阿联酋" => 2,
+            "韩国"  => 3,
+            "日本"  => 4,
+            "泰国"  => 5,
         ];
         $envPath = base_path() . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'lang' . DIRECTORY_SEPARATOR . 'zh-CN' . DIRECTORY_SEPARATOR . 'area_code.php';
         //        dd(\File::get($envPath));\

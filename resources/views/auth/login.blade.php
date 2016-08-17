@@ -1,9 +1,17 @@
+<html>
+<head>
+    <link href="/css/app.css" rel="stylesheet" />
+    <script src="/js/app.js"></script>
+</head>
+<body>
+
+
 <form method="POST" action="/auth/login">
     {!! csrf_field() !!}
 
     <div>
         Email
-        <input type="email" name="email" value="{{ old('email') }}">
+        <input type="email" class="form-control" name="email" value="{{ old('email') }}">
     </div>
 
     <div>
@@ -31,3 +39,5 @@
     @endif
 
 </form>
+</body>
+</html>
