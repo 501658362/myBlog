@@ -31,5 +31,6 @@ elixir(function (mix) {
  mix.copy(resourcesPath + 'font', basePath + 'font/');
  mix.copy(resourcesPath + 'images', basePath + 'images/');
  mix.copy(resourcesPath + 'js', basePath + 'js/');
+ mix.copy(resourcesPath + 'js', basePath + 'js/');
  // mix.task('uglify');
 });

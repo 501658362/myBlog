@@ -12,11 +12,11 @@ class BaseController extends Controller
 {
 
     public function __construct(Request $request){
-        $this->middleware('auth');
-        if (!Auth::check()) {
-            // The user is logged in...
-            return redirect('auth/login');
-        }
+//        $this->middleware('auth');
+//        if (!Auth::check()) {
+//            // The user is logged in...
+//            return redirect('auth/login');
+//        }
 
     }
     /**

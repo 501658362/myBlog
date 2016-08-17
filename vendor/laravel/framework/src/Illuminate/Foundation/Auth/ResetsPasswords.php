@@ -19,7 +19,7 @@ trait ResetsPasswords
      */
     public function getEmail()
     {
-        return view('auth.password');
+        return view('auth.forgot');
     }
 
     /**
@@ -31,10 +31,15 @@ trait ResetsPasswords
     public function postEmail(Request $request)
     {
         $this->validate($request, ['email' => 'required|email']);
+        try{
+            $response = Password::sendResetLink($request->only('email'), function (Message $message) {
+                $message->subject($this->getEmailSubject());
+            });
+        }catch (\Exception $e){
+            $message = "发送邮件失败，错误代码%s,错误信息%s";
+            return redirect()->back()->withInput($request->all())->withErrors(['email' => sprintf($message,$e->getCode(),$e->getMessage())]);
+        }
 
-        $response = Password::sendResetLink($request->only('email'), function (Message $message) {
-            $message->subject($this->getEmailSubject());
-        });
 
         switch ($response) {
             case Password::RESET_LINK_SENT:
