@@ -22,6 +22,7 @@ class AuthController extends Controller
     */
 
     protected $redirectPath = '/profile';
+    protected $redirectTo = '/';
     protected $loginPath = 'auth/login';
     protected $maxLoginAttempts = 2;
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
