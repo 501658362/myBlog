@@ -15,7 +15,7 @@ return [
 
     'password' => 'Passwords must be at least six characters and match the confirmation.',
     'reset' => '您的密码已被重置!',
-    'sent' => '重置密码的链接已发送至您的邮箱，请查收！',
+    'sent' => '重置密码的链接已发送至您的邮箱，请查收！如若没有收到，请检查垃圾箱~~~',
     'token' => '无效的token.',
     'user' => "此邮箱不是我们的用户，请检查.",
 
