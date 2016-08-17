@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @include("layouts.Mis.css")
+    @include("layouts.Mis.js")
     @include("layouts.Mis.meta")
     @yield('style')
     <title>
