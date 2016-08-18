@@ -40,4 +40,15 @@
 
 <script src="{!! asset("assets/js/jquery.validate.min.js") !!}"></script>
 
+<script src="{!! asset("assets/js/jquery.autosize.min.js") !!}"></script>
+<script src="{!! asset("assets/js/jquery.inputlimiter.1.3.1.min.js") !!}"></script>
+
 <script src="{!! asset("assets/js/my-js/base.js") !!}"></script>
+
+<script>
+    $('textarea[class*=autosize]').autosize({append: "\n"});
+    $('textarea.limited').inputlimiter({
+        remText: '剩 %n 字可以输入',
+        limitText: '最多允许输入 : %n 个字'
+    });
+</script>

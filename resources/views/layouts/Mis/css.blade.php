@@ -2,6 +2,7 @@
 
 		<link href="{!! asset("assets/css/bootstrap.min.css") !!}" rel="stylesheet" />
 		<link rel="stylesheet" href="{!! asset("assets/css/font-awesome.min.css") !!}" />
+		<link rel="stylesheet" href="{!! asset("assets/css/font-awesome-new.min.css") !!}" />
 
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="{!! asset("assets/css/font-awesome-ie7.min.css") !!}" />

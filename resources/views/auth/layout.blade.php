@@ -21,7 +21,7 @@
                             <span class="red">陈彦瑾</span>
                             <span class="white">博客</span>
                         </h1>
-                        <h4 class="blue">&copy; 某某科技公司</h4>
+                        <h4 class="blue">&copy; 某某科技公司 <small>	<a class="white" href="{!! url('contact') !!}">	{!! trans('language.contact_title') !!}</a></small> </h4>
                     </div>
 
                     <div class="space-6"></div>

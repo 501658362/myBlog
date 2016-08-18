@@ -337,6 +337,12 @@
             password: {
                 required: "请输入密码"
             },
+            phone: {
+                required: "请输入手机号码"
+            },
+            message: {
+                required: "请输入信息内容"
+            },
         }, messages || {});
         _t.validate({
             onkeyup: false,

@@ -29,8 +29,10 @@
 										<li>{{ $error }}</li>
 									@endforeach
 								</ul>
+
 							</div>
 						@endif
+
 						@if(session('status'))
 						<div class="green block">
 							<ul class="list-unstyled spaced">

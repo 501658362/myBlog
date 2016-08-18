@@ -20,6 +20,7 @@ return [
     'password_placeholder' => "请输入密码",
     'name_placeholder' => "请输入姓名",
     'confirm_password_placeholder' => "请输入确认密码",
+    'phone_placeholder' =>'请输入手机号码',
 
     'login' =>"登录",
     'register'=>"注册",
@@ -42,5 +43,8 @@ return [
     'user_agreement'=>'用户协议',
     'accept'    => '我同意',
 
+    'contact_title'=>"联系我们",
+    'contact_info'=>"有问题请联系我们，我们会尽快回复并解决问题！",
+    'message'=>"信息内容",
 
 ];
