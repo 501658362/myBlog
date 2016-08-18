@@ -11,6 +11,8 @@
   "dependencies": {
     "jquery": "^3.1.0",
     "bootstrap": "^3.3.7",
-    "font-awesome": "fontawesome#^4.6.3"
+    "font-awesome": "fontawesome#^4.6.3",
+    "datatables": "^1.10.12",
+    "Plugins": "https://github.com/DataTables/Plugins.git#^1.10.12"
   }
 }
