@@ -6,7 +6,7 @@
 
     <title>BLOG MIS</title>
 
-    @include('layouts.Mis.css')
+    @include('layouts.auth.css')
 </head>
 
 <body class="login-layout">
@@ -39,7 +39,7 @@
 
 <!--[if !IE]> -->
 
-@include("layouts.Mis.js")
+@include("layouts.auth.js")
         <!-- inline scripts related to this page -->
 
 

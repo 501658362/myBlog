@@ -1,4 +1,4 @@
-@extends('auth.layout')
+@extends('layouts.auth.layout')
 @section("content")
 	<div id="login-box" class="login-box visible widget-box no-border visible">
 		<div class="widget-body">
