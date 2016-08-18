@@ -74,7 +74,6 @@ trait AuthenticatesUsers
      */
     protected function handleUserWasAuthenticated(Request $request, $throttles)
     {
-
         if ($throttles) {
             $this->clearLoginAttempts($request);
         }

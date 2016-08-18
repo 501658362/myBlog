@@ -32,7 +32,7 @@ class SymfonyQuestionHelper extends QuestionHelper
     {
         $validator = $question->getValidator();
         $question->setValidator(function ($value) use ($validator) {
-            if (null !== $validator && is_callable($validator)) {
+            if (null !== $validator) {
                 $value = $validator($value);
             }
 
@@ -63,6 +63,18 @@ class SymfonyQuestionHelper extends QuestionHelper
 
             case $question instanceof ConfirmationQuestion:
                 $text = sprintf(' <info>%s (yes/no)</info> [<comment>%s</comment>]:', $text, $default ? 'yes' : 'no');
+
+                break;
+
+            case $question instanceof ChoiceQuestion && $question->isMultiselect():
+                $choices = $question->getChoices();
+                $default = explode(',', $default);
+
+                foreach ($default as $key => $value) {
+                    $default[$key] = $choices[trim($value)];
+                }
+
+                $text = sprintf(' <info>%s</info> [<comment>%s</comment>]:', $text, implode(', ', $default));
 
                 break;
 

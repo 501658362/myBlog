@@ -21,11 +21,13 @@ final class TokenizedTypeHintRewriter implements TypeHintRewriter
     const STATE_READING_CLASS = 1;
     const STATE_READING_FUNCTION = 2;
     const STATE_READING_ARGUMENTS = 3;
+    const STATE_READING_FUNCTION_BODY = 4;
 
     private $state = self::STATE_DEFAULT;
 
     private $currentClass;
     private $currentFunction;
+    private $currentBodyLevel;
 
     private $typehintTokens = array(
         T_WHITESPACE, T_STRING, T_NS_SEPARATOR
@@ -72,6 +74,7 @@ final class TokenizedTypeHintRewriter implements TypeHintRewriter
         $this->currentClass = '';
         $this->currentFunction = '';
     }
+
     /**
      * @param array $tokens
      * @return array $tokens
@@ -79,12 +82,17 @@ final class TokenizedTypeHintRewriter implements TypeHintRewriter
     private function stripTypeHints($tokens)
     {
         foreach ($tokens as $index => $token) {
+            if ($this->isToken($token, '{')) {
+                $this->currentBodyLevel++;
+            }
+            elseif ($this->isToken($token, '}')) {
+                $this->currentBodyLevel--;
+            }
 
             switch ($this->state) {
                 case self::STATE_READING_ARGUMENTS:
                     if (')' == $token) {
                         $this->state = self::STATE_READING_CLASS;
-                        $this->currentFunction = '';
                     }
                     elseif ($this->tokenHasType($token, T_VARIABLE)) {
                         $this->extractTypehints($tokens, $index, $token);
@@ -99,12 +107,27 @@ final class TokenizedTypeHintRewriter implements TypeHintRewriter
                     }
                     break;
                 case self::STATE_READING_CLASS:
-                    if ($this->tokenHasType($token, T_STRING) && !$this->currentClass) {
+                    if ('{' == $token && $this->currentFunction) {
+                        $this->state = self::STATE_READING_FUNCTION_BODY;
+                        $this->currentBodyLevel = 1;
+                    }
+                    elseif ('}' == $token && $this->currentClass) {
+                        $this->state = self::STATE_DEFAULT;
+                        $this->currentClass = null;
+                    }
+                    elseif ($this->tokenHasType($token, T_STRING) && !$this->currentClass && $this->shouldExtractTokensOfClass($token[1])) {
                         $this->currentClass = $token[1];
                     }
-                    elseif($this->tokenHasType($token, T_FUNCTION)) {
+                    elseif ($this->tokenHasType($token, T_FUNCTION) && $this->currentClass) {
                         $this->state = self::STATE_READING_FUNCTION;
                     }
+                    break;
+                case self::STATE_READING_FUNCTION_BODY:
+                    if ('}' == $token && $this->currentBodyLevel === 0) {
+                        $this->currentFunction = '';
+                        $this->state = self::STATE_READING_CLASS;
+                    }
+
                     break;
                 default:
                     if ($this->tokenHasType($token, T_CLASS)) {
@@ -137,7 +160,10 @@ final class TokenizedTypeHintRewriter implements TypeHintRewriter
         $typehint = '';
         for ($i = $index - 1; in_array($tokens[$i][0], $this->typehintTokens); $i--) {
             $typehint = $tokens[$i][1] . $typehint;
-            unset($tokens[$i]);
+
+            if (T_WHITESPACE !== $tokens[$i][0]) {
+                unset($tokens[$i]);
+            }
         }
 
         if ($typehint = trim($typehint)) {
@@ -170,5 +196,26 @@ final class TokenizedTypeHintRewriter implements TypeHintRewriter
     private function tokenHasType($token, $type)
     {
         return is_array($token) && $type == $token[0];
+    }
+
+    /**
+     * @param string $className
+     *
+     * @return bool
+     */
+    private function shouldExtractTokensOfClass($className)
+    {
+        return substr($className, -4) == 'Spec';
+    }
+
+    /**
+     * @param array|string $token
+     * @param string $string
+     *
+     * @return bool
+     */
+    private function isToken($token, $string)
+    {
+        return $token == $string || (is_array($token) && $token[1] == $string);
     }
 }

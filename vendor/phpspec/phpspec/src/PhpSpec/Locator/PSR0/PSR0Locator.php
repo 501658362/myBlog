@@ -167,6 +167,14 @@ class PSR0Locator implements ResourceLocatorInterface
     }
 
     /**
+     * @return boolean
+     */
+    public function isPSR4()
+    {
+        return $this->psr4Prefix !== null;
+    }
+
+    /**
      * @param string $query
      *
      * @return ResourceInterface[]
@@ -222,6 +230,7 @@ class PSR0Locator implements ResourceLocatorInterface
      */
     public function createResource($classname)
     {
+        $classname = ltrim($classname, '\\');
         $this->validatePsr0Classname($classname);
 
         $classname = str_replace('/', '\\', $classname);
@@ -272,6 +281,11 @@ class PSR0Locator implements ResourceLocatorInterface
         return $resources;
     }
 
+    /**
+     * @param $path
+     *
+     * @return null|string
+     */
     private function findSpecClassname($path)
     {
         // Find namespace and class name
@@ -314,7 +328,7 @@ class PSR0Locator implements ResourceLocatorInterface
         $classname = $this->findSpecClassname($path);
 
         if (null === $classname) {
-            throw new \RuntimeException('Spec file does not contains any class definition.');
+            throw new \RuntimeException(sprintf('Spec file "%s" does not contains any class definition.', $path));
         }
 
         // Remove spec namespace from the begining of the classname.
@@ -337,6 +351,11 @@ class PSR0Locator implements ResourceLocatorInterface
         return new PSR0Resource(explode('\\', $classname), $this);
     }
 
+    /**
+     * @param string $classname
+     *
+     * @throws InvalidArgumentException
+     */
     private function validatePsr0Classname($classname)
     {
         $pattern = '/^([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*[\/\\\\]?)*[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/';
@@ -351,7 +370,8 @@ class PSR0Locator implements ResourceLocatorInterface
     }
 
     /**
-     * @param $query
+     * @param string $query
+     *
      * @return string
      */
     private function getQueryPath($query)
@@ -359,17 +379,48 @@ class PSR0Locator implements ResourceLocatorInterface
         $sepr = DIRECTORY_SEPARATOR;
         $replacedQuery = str_replace(array('\\', '/'), $sepr, $query);
 
-        if (false !== strpos($query, '\\')) {
+        if ($this->queryContainsQualifiedClassName($query)) {
             $namespacedQuery = null === $this->psr4Prefix ?
                 $replacedQuery :
                 substr($replacedQuery, strlen($this->srcNamespace));
 
             $path = $this->fullSpecPath . $namespacedQuery . 'Spec.php';
+
             if ($this->filesystem->pathExists($path)) {
                 return $path;
             }
         }
 
         return rtrim(realpath($replacedQuery), $sepr);
+    }
+
+    /**
+     * @param string $query
+     *
+     * @return bool
+     */
+    private function queryContainsQualifiedClassName($query)
+    {
+        return $this->queryContainsBlackslashes($query) && !$this->isWindowsPath($query);
+    }
+
+    /**
+     * @param string $query
+     *
+     * @return bool
+     */
+    private function queryContainsBlackslashes($query)
+    {
+        return false !== strpos($query, '\\');
+    }
+
+    /**
+     * @param string $query
+     *
+     * @return bool
+     */
+    private function isWindowsPath($query)
+    {
+        return preg_match('/^\w:/', $query);
     }
 }
