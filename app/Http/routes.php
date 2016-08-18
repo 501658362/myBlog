@@ -9,9 +9,33 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function () {
+
+get('/', function () {
     return view('welcome');
 });
+
+//Route::get('/', function () {
+//    return redirect('/blog');
+//});
+
+Route::group(['namespace'=>'Web'],function(){
+    Route::get('blog', 'BlogController@index');
+    Route::get('blog/{slug}', 'BlogController@show');
+});
+
+// Admin area
+Route::get('mis', function () {
+    return redirect('/mis/post');
+});
+
+Route::group(['namespace' => 'Mis', "prefix"=>'mis','middleware' => 'auth'], function () {
+    resource('post', 'PostController');
+    resource('tag', 'TagController');
+    get('tag/upload', 'UploadController@index');
+});
+
+
+
 Route::group(['middleware'=>'auth'],function(){
 
     Route::group(['middleWare' => ['test']], function () {
