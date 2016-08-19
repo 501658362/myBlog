@@ -31,7 +31,7 @@
             <a class="navbar-brand" href="#">{{ config('blog.title') }} Admin</a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu">
-            @include('Mis.partials.navbar')
+            @include('mis.partials.navbar')
         </div>
     </div>
 </nav>

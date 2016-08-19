@@ -1,4 +1,4 @@
-@extends('Mis.layout')
+@extends('mis.layout')
 
 @section('content')
     <div class="container-fluid">
