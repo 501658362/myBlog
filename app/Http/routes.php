@@ -30,8 +30,12 @@ Route::get('mis', function () {
 
 Route::group(['namespace' => 'Mis', "prefix"=>'mis','middleware' => 'auth'], function () {
     resource('post', 'PostController');
-    resource('tag', 'TagController');
-    get('tag/upload', 'UploadController@index');
+    resource('tag', 'TagController', ['except' => 'show']);
+    get('upload', 'UploadController@index');
+    post('upload/file', 'UploadController@uploadFile');
+    delete('upload/file', 'UploadController@deleteFile');
+    post('upload/folder', 'UploadController@createFolder');
+    delete('upload/folder', 'UploadController@deleteFolder');
 });
 
 

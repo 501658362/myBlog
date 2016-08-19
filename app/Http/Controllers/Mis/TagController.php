@@ -2,13 +2,30 @@
 
 namespace App\Http\Controllers\Mis;
 
+use App\Http\Model\Tag;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\TagCreateRequest;
+use App\Http\Requests\TagUpdateRequesT;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class TagController extends Controller
+class TagController extends BaseController
 {
+    protected $fields = [
+        'tag' => '',
+        'title' => '',
+        'subtitle' => '',
+        'meta_description' => '',
+        'page_image' => '',
+        'layout' => 'blog.layouts.index',
+        'reverse_direction' => 0,
+    ];
+
+    public function __construct(Request $request){
+        $this->viewPath="Mis.tag.%s";
+        parent::__construct($request);
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +34,8 @@ class TagController extends Controller
     public function index()
     {
         //
+        $tags = Tag::all();
+        return parent::view('index')->withTags($tags);
     }
 
     /**
@@ -27,28 +46,30 @@ class TagController extends Controller
     public function create()
     {
         //
+        $data = [];
+        foreach ($this->fields as $field => $default) {
+            $data[$field] = old($field, $default);
+        }
+
+        return parent::view('create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * @param TagCreateRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TagCreateRequest $request)
     {
         //
-    }
+        $tag = new Tag();
+        foreach (array_keys($this->fields) as $field) {
+            $tag->$field = $request->get($field);
+        }
+        $tag->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('/mis/tag')
+            ->withSuccess("The tag '$tag->tag' was created.");
     }
 
     /**
@@ -60,18 +81,32 @@ class TagController extends Controller
     public function edit($id)
     {
         //
+        $tag = Tag::findOrFail($id);
+        $data = ['id' => $id];
+        foreach (array_keys($this->fields) as $field) {
+            $data[$field] = old($field, $tag->$field);
+        }
+
+        return parent::view('edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param TagUpdateRequesT $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TagUpdateRequesT $request, $id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+
+        foreach (array_keys(array_except($this->fields, ['tag'])) as $field) {
+            $tag->$field = $request->get($field);
+        }
+        $tag->save();
+
+        return redirect("/mis/tag/$id/edit")
+            ->withSuccess("Changes saved.");
     }
 
     /**
@@ -82,6 +117,10 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+        $tag->delete();
+
+        return redirect('/mis/tag')
+            ->withSuccess("The '$tag->tag' tag has been deleted.");
     }
 }
