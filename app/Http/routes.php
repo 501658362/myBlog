@@ -29,7 +29,7 @@ Route::get('mis', function () {
 });
 
 Route::group(['namespace' => 'Mis', "prefix"=>'mis','middleware' => 'auth'], function () {
-    resource('post', 'PostController');
+    resource('post', 'PostController', ['except' => 'show']);
     resource('tag', 'TagController', ['except' => 'show']);
     get('upload', 'UploadController@index');
     post('upload/file', 'UploadController@uploadFile');

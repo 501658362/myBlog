@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Mis;
 
+use App\Http\Model\Post;
+use App\Http\Requests\PostUpdateRequest;
+use App\Jobs\PostFormFields;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Http\Requests\PostCreateRequest;
 use App\Http\Controllers\Controller;
 
 class PostController extends BaseController
@@ -23,73 +25,86 @@ class PostController extends BaseController
      */
     public function index()
     {
-        //
-        return parent::view('index');
+        return parent::view('index')  ->withPosts(Post::all());
     }
 
+
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Show the new post form
      */
     public function create()
     {
-        //
+        $data = $this->dispatch(new PostFormFields());
+
+        return parent::view('create', $data);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Post
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param PostCreateRequest $request
      */
-    public function store(Request $request)
+    public function store(PostCreateRequest $request)
     {
-        //
+        $post = Post::create($request->postFillData());
+        $post->syncTags($request->get('tags', []));
+
+        return redirect()
+            ->route('mis.post.index')
+            ->withSuccess('New Post Successfully Created.');
     }
 
     /**
-     * Display the specified resource.
+     * Show the post edit form
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function edit($id)
     {
-        //
+        $data = $this->dispatch(new PostFormFields($id));
+
+        return parent::view('edit', $data);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the Post
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param PostUpdateRequest $request
+     * @param int $id
      */
-    public function update(Request $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->fill($request->postFillData());
+        $post->save();
+        $post->syncTags($request->get('tags', []));
+
+        if ($request->action === 'continue') {
+            return redirect()
+                ->back()
+                ->withSuccess('Post saved.');
+        }
+
+        return redirect()
+            ->route('mis.post.index')
+            ->withSuccess('Post saved.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->tags()->detach();
+        $post->delete();
+
+        return redirect()
+            ->route('mis.post.index')
+            ->withSuccess('Post deleted.');
     }
 }
