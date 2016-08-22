@@ -1,0 +1,1 @@
+<h3>{!! trans($name) !!} <small>» {!! trans('language.listing') !!} </small></h3>

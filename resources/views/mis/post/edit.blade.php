@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row page-title-row">
             <div class="col-md-12">
-                <h3>Posts <small>» Edit Post</small></h3>
+                @include("mis.partials._header1",['name' =>  'language.posts','action' => 'edit','language' => 'language.edit'])
             </div>
         </div>
 
@@ -16,7 +16,7 @@
             <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Post Edit Form</h3>
+                        <h3 class="panel-title">{!! trans('language.posts').trans('language.form') !!}</h3>
                     </div>
                     <div class="panel-body">
 
@@ -34,15 +34,15 @@
                                     <div class="col-md-10 col-md-offset-2">
                                         <button type="submit" class="btn btn-primary btn-lg" name="action" value="continue">
                                             <i class="fa fa-floppy-o"></i>
-                                            Save - Continue
+                                            {!! trans('language.save')!!} -  {!! trans('language.continue')!!}
                                         </button>
                                         <button type="submit" class="btn btn-success btn-lg" name="action" value="finished">
                                             <i class="fa fa-floppy-o"></i>
-                                            Save - Finished
+                                            {!! trans('language.save')!!} -  {!! trans('language.finished')!!}
                                         </button>
                                         <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modal-delete">
                                             <i class="fa fa-times-circle"></i>
-                                            Delete
+                                            {!! trans('language.delete')!!}
                                         </button>
                                     </div>
                                 </div>
@@ -63,21 +63,21 @@
                         <button type="button" class="close" data-dismiss="modal">
                             ×
                         </button>
-                        <h4 class="modal-title">Please Confirm</h4>
+                        <h4 class="modal-title">{!! trans('language.please')!!}{!! trans('language.confirm')!!} </h4>
                     </div>
                     <div class="modal-body">
                         <p class="lead">
                             <i class="fa fa-question-circle fa-lg"></i>
-                            Are you sure you want to delete this post?
+                            你确定要{!! trans('language.delete')!!}这篇{!! trans('language.posts')!!}吗？
                         </p>
                     </div>
                     <div class="modal-footer">
                         <form method="POST" action="{{ route('mis.post.destroy', $id) }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="_method" value="DELETE">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">   {!! trans('language.close')!!}</button>
                             <button type="submit" class="btn btn-danger">
-                                <i class="fa fa-times-circle"></i> Yes
+                                <i class="fa fa-times-circle"></i>    {!! trans('language.yes')!!}
                             </button>
                         </form>
                     </div>

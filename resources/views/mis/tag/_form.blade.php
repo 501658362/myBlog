@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="title" class="col-md-3 control-label">
-        Title
+        {!! trans('language.title') !!}
     </label>
     <div class="col-md-8">
         <input type="text" class="form-control" name="title" id="title" value="{{ $title }}">
@@ -9,7 +9,7 @@
 
 <div class="form-group">
     <label for="subtitle" class="col-md-3 control-label">
-        Subtitle
+        {!! trans('language.subtitle') !!}
     </label>
     <div class="col-md-8">
         <input type="text" class="form-control" name="subtitle" id="subtitle" value="{{ $subtitle }}">
@@ -18,7 +18,7 @@
 
 <div class="form-group">
     <label for="meta_description" class="col-md-3 control-label">
-        Meta Description
+        {!! trans('language.meta') !!}
     </label>
     <div class="col-md-8">
         <textarea class="form-control" id="meta_description" name="meta_description" rows="3">
@@ -29,7 +29,7 @@
 
 <div class="form-group">
     <label for="page_image" class="col-md-3 control-label">
-        Page Image
+        {!! trans('language.page_image') !!}
     </label>
     <div class="col-md-8">
         <input type="text" class="form-control" name="page_image" id="page_image" value="{{ $page_image }}">
@@ -38,7 +38,7 @@
 
 <div class="form-group">
     <label for="layout" class="col-md-3 control-label">
-        Layout
+        {!! trans('language.layout') !!}
     </label>
     <div class="col-md-4">
         <input type="text" class="form-control" name="layout" id="layout" value="{{ $layout }}">

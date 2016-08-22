@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row page-title-row">
             <div class="col-md-12">
-                <h3>Tags <small>» Create New Tag</small></h3>
+                @include("mis.partials._header1",['name' =>  'language.tags','action' => 'add','language' => 'language.add'])
             </div>
         </div>
 
@@ -12,7 +12,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">New Tag Form</h3>
+                        <h3 class="panel-title">     {!! trans('language.add').trans('language.form') !!}</h3>
                     </div>
                     <div class="panel-body">
 
@@ -34,7 +34,7 @@
                                 <div class="col-md-7 col-md-offset-3">
                                     <button type="submit" class="btn btn-primary btn-md">
                                         <i class="fa fa-plus-circle"></i>
-                                        Add New Tag
+                                        {!! trans('language.add').trans('language.new').trans('language.tags') !!}
                                     </button>
                                 </div>
                             </div>

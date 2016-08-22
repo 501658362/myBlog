@@ -67,7 +67,6 @@ class BlogController extends Controller
         if ($tag) {
             $tag = Tag::whereTag($tag)->firstOrFail();
         }
-
         return view($post->layout, compact('post', 'tag'));
 //        $post = Post::whereSlug($slug)->firstOrFail();
 //        return view('Web.Blog.post')->withPost($post);

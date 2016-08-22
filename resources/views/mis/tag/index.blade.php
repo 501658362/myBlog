@@ -4,11 +4,11 @@
     <div class="container-fluid">
         <div class="row page-title-row">
             <div class="col-md-6">
-                <h3>Tags <small>» Listing</small></h3>
+                @include("mis.partials._header",['name' => 'language.tags'])
             </div>
             <div class="col-md-6 text-right">
                 <a href="/mis/tag/create" class="btn btn-success btn-md">
-                    <i class="fa fa-plus-circle"></i> New Tag
+                    <i class="fa fa-plus-circle"></i> {!! trans('language.new').trans('language.tags') !!}
                 </a>
             </div>
         </div>
@@ -22,14 +22,14 @@
                 <table id="tags-table" class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>Tag</th>
-                        <th>Title</th>
-                        <th class="hidden-sm">Subtitle</th>
-                        <th class="hidden-md">Page Image</th>
-                        <th class="hidden-md">Meta Description</th>
-                        <th class="hidden-md">Layout</th>
+                        <th>{!! trans('language.tags') !!}</th>
+                        <th>{!! trans('language.title') !!}</th>
+                        <th class="hidden-sm">{!! trans('language.subtitle') !!}</th>
+                        <th class="hidden-md">{!! trans('language.page_image') !!}</th>
+                        <th class="hidden-md">{!! trans('language.meta') !!}</th>
+                        <th class="hidden-md">{!! trans('language.layout') !!}</th>
                         <th class="hidden-sm">Direction</th>
-                        <th data-sortable="false">Actions</th>
+                        <th data-sortable="false">{!! trans('language.actions') !!}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,7 +50,7 @@
                             </td>
                             <td>
                                 <a href="/mis/tag/{{ $tag->id }}/edit" class="btn btn-xs btn-info">
-                                    <i class="fa fa-edit"></i> Edit
+                                    <i class="fa fa-edit"></i> {!! trans('language.edit') !!}
                                 </a>
                             </td>
                         </tr>

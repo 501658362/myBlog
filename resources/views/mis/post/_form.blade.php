@@ -2,7 +2,7 @@
     <div class="col-md-8">
         <div class="form-group">
             <label for="title" class="col-md-2 control-label">
-                Title
+                {!! trans('language.title') !!}
             </label>
             <div class="col-md-10">
                 <input type="text" class="form-control" name="title" autofocus id="title" value="{{ $title }}">
@@ -10,7 +10,8 @@
         </div>
         <div class="form-group">
             <label for="subtitle" class="col-md-2 control-label">
-                Subtitle
+
+                {!! trans('language.subtitle') !!}
             </label>
             <div class="col-md-10">
                 <input type="text" class="form-control" name="subtitle" id="subtitle" value="{{ $subtitle }}">
@@ -18,7 +19,8 @@
         </div>
         <div class="form-group">
             <label for="page_image" class="col-md-2 control-label">
-                Page Image
+
+                {!! trans('language.page_image') !!}
             </label>
             <div class="col-md-10">
                 <div class="row">
@@ -51,7 +53,8 @@
         </div>
         <div class="form-group">
             <label for="content" class="col-md-2 control-label">
-                Content
+
+                {!! trans('language.content') !!}
             </label>
             <div class="col-md-10">
                 <textarea class="form-control" name="content" rows="14" id="content">{{ $content }}</textarea>
@@ -61,7 +64,7 @@
     <div class="col-md-4">
         <div class="form-group">
             <label for="publish_date" class="col-md-3 control-label">
-                Pub Date
+                {!! trans('language.published_date') !!}
             </label>
             <div class="col-md-8">
                 <input class="form-control" name="publish_date" id="publish_date" type="text" value="{{ $publish_date }}">
@@ -69,7 +72,7 @@
         </div>
         <div class="form-group">
             <label for="publish_time" class="col-md-3 control-label">
-                Pub Time
+                {!! trans('language.published_time') !!}
             </label>
             <div class="col-md-8">
                 <input class="form-control" name="publish_time" id="publish_time" type="text" value="{{ $publish_time }}">
@@ -79,15 +82,17 @@
             <div class="col-md-8 col-md-offset-3">
                 <div class="checkbox">
                     <label>
-                        <input {{ checked($is_draft) }} type="checkbox" name="is_draft">
-                        Draft?
+                        <input {{ checked($is_draft) }} type="checkbox" class="ace" name="is_draft">
+                        <span class="lbl">   {!! trans('language.draft') !!} ?</span>
+
+
                     </label>
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label for="tags" class="col-md-3 control-label">
-                Tags
+                {!! trans('language.tags') !!}
             </label>
             <div class="col-md-8">
                 <select name="tags[]" id="tags" class="form-control" multiple>
@@ -101,7 +106,7 @@
         </div>
         <div class="form-group">
             <label for="layout" class="col-md-3 control-label">
-                Layout
+                {!! trans('language.layout') !!}
             </label>
             <div class="col-md-8">
                 <input type="text" class="form-control" name="layout" id="layout" value="{{ $layout }}">
@@ -109,7 +114,8 @@
         </div>
         <div class="form-group">
             <label for="meta_description" class="col-md-3 control-label">
-                Meta
+
+                {!! trans('language.meta') !!}
             </label>
             <div class="col-md-8">
                 <textarea class="form-control" name="meta_description" id="meta_description" rows="6">
