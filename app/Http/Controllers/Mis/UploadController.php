@@ -15,7 +15,7 @@ class UploadController extends BaseController
 
     public function __construct(UploadsManager $manager,Request $request)
     {
-        $this->viewPath ='Mis.upload.%s';
+        $this->viewPath ='mis.upload.%s';
         $this->manager = $manager;
         parent::__construct($request);
     }

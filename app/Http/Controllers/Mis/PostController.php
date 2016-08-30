@@ -14,7 +14,7 @@ class PostController extends BaseController
 
 
     public function __construct(Request $request){
-        $this->viewPath = "Mis.post.%s";
+        $this->viewPath = "mis.post.%s";
         parent::__construct($request);
     }
 

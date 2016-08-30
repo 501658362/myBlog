@@ -22,7 +22,7 @@ class TagController extends BaseController
     ];
 
     public function __construct(Request $request){
-        $this->viewPath="Mis.tag.%s";
+        $this->viewPath="mis.tag.%s";
         parent::__construct($request);
 
     }
