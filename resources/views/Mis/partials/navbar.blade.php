@@ -1,14 +1,14 @@
 <ul class="nav navbar-nav">
-    <li><a href="/">Blog Home</a></li>
+    <li><a href="/blog">{!! trans('language.index') !!}</a></li>
     @if (Auth::check())
         <li @if (Request::is('mis/post*')) class="active" @endif>
-            <a href="/mis/post">Posts</a>
+            <a href="/mis/post">{!! trans('language.posts') !!}</a>
         </li>
         <li @if (Request::is('mis/tag*')) class="active" @endif>
-            <a href="/mis/tag">Tags</a>
+            <a href="/mis/tag">{!! trans('language.tags') !!}</a>
         </li>
         <li @if (Request::is('mis/upload*')) class="active" @endif>
-            <a href="/mis/upload">Uploads</a>
+            <a href="/mis/upload">{!! trans('language.uploads') !!}</a>
         </li>
     @endif
 </ul>
