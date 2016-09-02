@@ -14,9 +14,9 @@ get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/', function () {
-//    return redirect('/blog');
-//});
+Route::get('/', function () {
+    return redirect('/blog');
+});
 
 Route::group(['namespace'=>'Web'],function(){
     Route::get('blog', 'BlogController@index');

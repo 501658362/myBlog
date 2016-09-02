@@ -42,12 +42,7 @@ class BlogIndexData extends Job implements SelfHandling
      */
     protected function normalIndexData()
     {
-        $posts = Post::with('tags')
-            ->where('published_at', '<=', Carbon::now())
-            ->where('is_draft', 0)
-            ->orderBy('published_at', 'desc')
-            ->paginate(config('blog.posts_per_page'));
-
+        $posts = Post::getPosts();
         return [
             'title' => config('blog.title'),
             'subtitle' => config('blog.subtitle'),
