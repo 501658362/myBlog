@@ -12,7 +12,9 @@
         "michelf/php-markdown": "^1.6",
         "michelf/php-smartypants": "1.6.x-dev",
         "dflydev/apache-mime-types": "^1.0",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "suin/php-rss-writer": "^1.5",
+        "barryvdh/laravel-ide-helper": "^2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -46,6 +48,9 @@
             "php artisan clear-compiled"
         ],
         "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
             "php artisan optimize"
         ],
         "post-root-package-install": [
@@ -56,6 +61,7 @@
         ]
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "secure-http": false
     }
 }

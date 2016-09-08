@@ -9,26 +9,25 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['domain'     =>'www.blog.tech'],function(){
 get('/', function () {
     return view('welcome');
 });
-
-//Route::get('/', function () {
-//    return redirect('/blog');
-//});
-
-Route::group(['namespace'=>'Web'],function(){
-    Route::get('blog', 'BlogController@index');
-    Route::get('blog/{slug}', 'BlogController@show');
+Route::get('/', function () {
+    return redirect('/blog');
 });
-
+Route::group(['namespace' => 'Web'], function () {
+    get('blog', 'BlogController@index');
+    get('blog/{slug}', 'BlogController@show');
+    //站点地图
+    get('sitemap.xml', 'BlogController@siteMap');
+    //RSS 订阅
+    get('rss', 'BlogController@rss');
+});
 // Admin area
 Route::get('mis', function () {
     return redirect('/mis/post');
 });
-
-Route::group(['namespace' => 'Mis', "prefix"=>'mis','middleware' => 'auth'], function () {
+Route::group(['namespace' => 'Mis', "prefix" => 'mis', 'middleware' => 'auth'], function () {
     resource('post', 'PostController', ['except' => 'show']);
     resource('tag', 'TagController', ['except' => 'show']);
     get('upload', 'UploadController@index');
@@ -38,27 +37,17 @@ Route::group(['namespace' => 'Mis', "prefix"=>'mis','middleware' => 'auth'], fun
     delete('upload/folder', 'UploadController@deleteFolder');
 });
 
-
-
-Route::group(['middleware'=>'auth'],function(){
-
-    Route::group(['middleWare' => ['test']], function () {
-        Route::resource('test', 'TestController');
-    });
-    Route::get('test/{id}', [
-        'middleware' => 'test',
-        function () {
-            dd(1);
-        }
-    ]);
+Route::group(['middleware' => 'test'], function () {
+    Route::resource('test', 'TestController');
+});
+Route::group(['middleware' => 'auth'], function () {
 
     // 个人中心
     Route::group(['namespace' => 'Mis'], function () {
         Route::resource('profile', 'ProfileController');
     });
-
 });
-Route::group(['namespace' => 'Auth'],function(){
+Route::group(['namespace' => 'Auth'], function () {
     // 认证路由...
     Route::get('auth/login', 'AuthController@getLogin');
     Route::post('auth/login', 'AuthController@postLogin');
@@ -66,7 +55,6 @@ Route::group(['namespace' => 'Auth'],function(){
     // 注册路由...
     Route::get('auth/register', 'AuthController@getRegister');
     Route::post('auth/register', 'AuthController@postRegister');
-
     // 密码重置链接请求路由...
     Route::get('auth/email', 'PasswordController@getEmail');
     Route::post('auth/email', 'PasswordController@postEmail');
@@ -74,7 +62,6 @@ Route::group(['namespace' => 'Auth'],function(){
     Route::get('password/reset/{token}', 'PasswordController@getReset');
     Route::post('password/reset', 'PasswordController@postReset');
 });
-
 // 联系我们
 Route::resource('contact','ContactController',['only' => ['index','store']]);
 });

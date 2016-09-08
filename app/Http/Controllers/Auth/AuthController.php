@@ -21,7 +21,7 @@ class AuthController extends Controller
     |
     */
 
-    protected $redirectPath = '/profile';
+    protected $redirectPath = '/mis';
     protected $redirectTo = '/';
     protected $loginPath = 'auth/login';
     protected $maxLoginAttempts = 2;

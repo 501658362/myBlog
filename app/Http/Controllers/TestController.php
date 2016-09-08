@@ -1,10 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Http\Model\User;
+use App\Http\Model\Post;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
@@ -12,10 +14,66 @@ use Illuminate\Support\Facades\Redis;
 class TestController extends Controller {
 
     public function __construct() {
-//        $this->middleware('test') ;
+//                $this->middleware('test') ;
     }
 
+    /**
+     * Display a listing of the resource.
+     * @return \Illuminate\Http\Response
+     */
     public function index() {
+        return view("test.pay");
+        dd(\Illuminate\Support\Facades\Request::all());
+//        $word = "Hello, Toolmao!";
+//        echo $word[7];
+//        echo '111';
+//        sleep(2);
+//        echo '222';
+//        dd(1);
+
+       dd( Cache::tags('my-tag')->has('key'),Cache::tags('my-tag')->get('key'));
+
+        if (Cache::has('post')) {
+            echo '存在chche,读取' . '<br />';
+            echo Cache::get('post');
+        } else {
+            echo '不存在cache,现在创建' . '<br />';
+            $time = \Carbon\Carbon::now()->addMinutes(10);
+            $redis = Cache::add('post', $post, $time);
+            echo Cache::get('post');
+        }
+        dd(1);
+        $redis = Redis::connection('default');
+        $cache = $redis->get('postList');
+        //        dd(1,$cache);
+        //        $redis->del('postList');
+        if ($cache) {
+            $post = $cache;
+            dd($post);
+        } else {
+            $post = Post::All();
+            $redis->set('postList', $post);
+            //过期时间
+            $redis->expire('postList',10);
+            dd("不存在" . $post);
+        }
+        Redis::lPush('namex', 'Taylo1r');
+        Redis::lPush('namex', 'Taylo1r');
+        Redis::lPush('namex', 'Taylo1r2');
+        Redis::lPush('namex', 'Taylo1r23');
+        Redis::lPush('namex', 'Taylo1r24');
+        Redis::lPush('namex', 'Taylo1r25');
+        $arList = Redis::lrange("namex", 0, 5);
+        dd(Redis::keys("*"));
+        $user = new User();
+        $user = $user->where('user_name', '唐僧')->get()->toArray();
+        dd($user);
+        Redis::set('name1', 'Taylo1r');
+        //        $values = Redis::lrange('names', 5, 10);
+        dd(Redis::get('name1'));
+    }
+
+    public function indexMis() {
         return view("layouts.Mis.master");
     }
 
@@ -102,26 +160,6 @@ return [
         while ($r = mysqli_fetch_assoc($re)) {
             echo json_encode($r, JSON_UNESCAPED_UNICODE) . '<br>';
         }
-    }
-
-    /**
-     * Display a listing of the resource.
-     * @return \Illuminate\Http\Response
-     */
-    public function indexRedis() {
-        //        Redis::lPush('namex', 'Taylo1r');
-        //        Redis::lPush('namex', 'Taylo1r2');
-        //        Redis::lPush('namex', 'Taylo1r23');
-        //        Redis::lPush('namex', 'Taylo1r24');
-        //        Redis::lPush('namex', 'Taylo1r25');
-        $arList = Redis::lrange("namex", 0, 5);
-        dd(Redis::keys("*"));
-        $user = new User();
-        $user = $user->where('user_name', '唐僧')->get()->toArray();
-        dd($user);
-        Redis::set('name1', 'Taylo1r');
-        //        $values = Redis::lrange('names', 5, 10);
-        dd(Redis::get('name1'));
     }
 
     /**
