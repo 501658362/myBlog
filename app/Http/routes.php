@@ -9,7 +9,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Route::group(['domain'     =>'www.blog.tech'],function(){
 get('/', function () {
     return view('welcome');
 });
@@ -77,4 +77,4 @@ Route::group(['namespace' => 'Auth'],function(){
 
 // 联系我们
 Route::resource('contact','ContactController',['only' => ['index','store']]);
-
+});
