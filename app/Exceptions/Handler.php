@@ -43,6 +43,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if ($e instanceof ModelNotFoundException) {
+            abort(404,'找不到！！！');
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
 

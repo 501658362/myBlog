@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Input;
 
 class Post extends Model {
-
-    const REDIS_POST_CACHE_TAG = 'redis_post_cache_tag';
-    const REDIS_POST_CACHE     = 'redis_post_cache_';
-    static $cacheMinutes = 1440;//24小时
     use SoftDeletes;
 
     //
@@ -31,50 +27,7 @@ class Post extends Model {
             'is_draft',
             'published_at',
         ];
-    //    public static function getPostsFromCache() {
-    //        $limit = Input::get('limit', config('blog.posts_per_page'));
-    //        $cacheName = self::REDIS_POST_CACHE . $limit;
-    //        self::__call("getPosts",$limit);
-    //        return selfgetCache($cacheName,'getPosts');
-    //    }
-    public static function getPosts() {
-        $limit = Input::get('limit', config('blog.posts_per_page'));
-        $page = Input::get('page', 1);
-        $cacheName = self::REDIS_POST_CACHE . $limit . '_' . $page;
-        if (empty( $posts = Cache::tags(self::REDIS_POST_CACHE_TAG)->get(self::REDIS_POST_CACHE . $cacheName) )) {
-            $posts = self::with('tags')->select([
-                'slug',
-                'title',
-                'subtitle',
-                'published_at'
-            ])->where('published_at', '<=', Carbon::now())->where('is_draft', 0)->orderBy('published_at', 'desc')->paginate($limit);
-            Cache::tags(self::REDIS_POST_CACHE_TAG)->put(self::REDIS_POST_CACHE . $cacheName, $posts, self::$cacheMinutes);
-        }
-        return $posts;
-    }
 
-    public static function getPostsByTag($tag) {
-        $limit = Input::get('limit', config('blog.posts_per_page'));
-        $page = Input::get('page', 1);
-        $cacheName = self::REDIS_POST_CACHE . $limit . '_' . $page . '_' . $tag->title;
-        if (empty( $posts = Cache::tags(self::REDIS_POST_CACHE_TAG)->get(self::REDIS_POST_CACHE . $cacheName) )) {
-            $posts = Post::where('published_at', '<=', Carbon::now())->whereHas('tags', function ($q) use ($tag) {
-                $q->where('tag', '=', $tag->tag);
-            })->where('is_draft', 0)->orderBy('published_at', (bool)$tag->reverse_direction ? 'asc' :
-                'desc')->paginate($limit);
-            $posts->addQuery('tag', $tag->tag);
-            Cache::tags(self::REDIS_POST_CACHE_TAG)->put(self::REDIS_POST_CACHE . $cacheName, $posts, self::$cacheMinutes);
-        }
-        return $posts;
-    }
-
-    //    private  function getCache($cacheName, $func) {
-    //        if (empty( $modal = Cache::tags(self::REDIS_POST_CACHE_TAG)->get(self::REDIS_POST_CACHE . $cacheName) )) {
-    //            $modal = property_exists($this, $func) ? $this->$func : null;
-    //            Cache::tags(self::REDIS_POST_CACHE_TAG)->put(self::REDIS_POST_CACHE . $cacheName, $modal, self::$cacheMinutes);
-    //        }
-    //        return $modal;
-    //    }
     /**
      * Return the date portion of published_at
      */
@@ -119,6 +72,9 @@ class Post extends Model {
     public function setTitleAttribute($value) {
         $this->attributes[ 'title' ] = $value;
         if (!$this->exists) {
+            $this->setUniqueSlug($value, '');
+        }
+        if(!$this->slug){
             $this->setUniqueSlug($value, '');
         }
     }

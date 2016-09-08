@@ -13,7 +13,7 @@
                         <h1>{{ $post->title }}</h1>
                         <h2 class="subheading">{{ $post->subtitle }}</h2>
             <span class="meta">
-              Posted on {{ $post->published_at->format('F j, Y') }}
+              Posted on {{ $post->published_at->format('Y-m-d') }}
                 @if ($post->tags->count())
                     in
                     {!! join(', ', $post->tagLinks()) !!}
@@ -61,7 +61,7 @@
                         </li>
                     @endif
                 @else
-                    @if ($post->newerPost($tag))
+                        @if ($post->newerPost($tag))
                         <li class="previous">
                             <a href="{!! $post->newerPost($tag)->url($tag) !!}">
                                 <i class="fa fa-long-arrow-left fa-lg"></i>
