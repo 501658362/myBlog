@@ -5,10 +5,10 @@
 <script>
     $(function() {
         $("#publish_date").pickadate({
-            format: "mmm-d-yyyy"
+            format: "Y-m-d"
         });
         $("#publish_time").pickatime({
-            format: "h:i A"
+            format: "H:i"
         });
         $("#tags").selectize({
             create: true

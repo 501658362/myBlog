@@ -57,8 +57,8 @@ class PostFormFields extends Job implements SelfHandling
             $fields = $this->fieldsFromModel($this->id, $fields);
         } else {
             $when = Carbon::now()->addHour();
-            $fields['publish_date'] = $when->format('M-j-Y');
-            $fields['publish_time'] = $when->format('g:i A');
+            $fields['publish_date'] = $when->format('Y-m-d');
+            $fields['publish_time'] = $when->format('H:i:s');
         }
 
         foreach ($fields as $fieldName => $fieldValue) {
