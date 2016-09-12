@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Cache;
 
 class BaseServices {
 
-    static $cacheMinutes = 1440;//24小时
+    static $cacheMinutes = 10;// 分钟
 
     /**
      * 保存缓存

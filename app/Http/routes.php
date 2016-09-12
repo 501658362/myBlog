@@ -19,8 +19,13 @@ Route::get('/', function () {
 });
 
 Route::group(['namespace'=>'Web'],function(){
-    Route::get('blog', 'BlogController@index');
-    Route::get('blog/{slug}', 'BlogController@show');
+    get('blog', 'BlogController@index');
+    get('blog/{slug}', 'BlogController@show');
+
+    //站点地图
+    get('sitemap.xml', 'BlogController@siteMap');
+    //RSS 订阅
+    get('rss', 'BlogController@rss');
 });
 
 // Admin area

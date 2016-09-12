@@ -19,7 +19,7 @@ trait ResetsPasswords
      */
     public function getEmail()
     {
-        return view('auth.forgot');
+        return view('auth.password');
     }
 
     /**

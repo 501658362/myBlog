@@ -12,7 +12,8 @@
         "michelf/php-markdown": "^1.6",
         "michelf/php-smartypants": "1.6.x-dev",
         "dflydev/apache-mime-types": "^1.0",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "suin/php-rss-writer": "^1.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -56,6 +57,7 @@
         ]
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "secure-http": false
     }
 }
