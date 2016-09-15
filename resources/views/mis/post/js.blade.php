@@ -4,12 +4,8 @@
 <script src=" {!! asset('assets/selectize/selectize.min.js') !!}"></script>
 <script>
     $(function() {
-        $("#publish_date").pickadate({
-            format: "Y-m-d"
-        });
-        $("#publish_time").pickatime({
-            format: "H:i"
-        });
+        $("#publish_date").my_pickadate();
+        $("#publish_time").my_pickatime();
         $("#tags").selectize({
             create: true
         });

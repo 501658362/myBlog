@@ -2,16 +2,18 @@
 namespace App\Http\Controllers\Web;
 
 use App\Facades\PostServices;
+use App\Http\Controllers\BaseController;
 use App\Http\Model\Post;
 use App\Http\Model\Tag;
 use App\Jobs\BlogIndexData;
+use App\Services\RssFeed;
+use App\Services\SiteMap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 
-class BlogController extends Controller {
+class BlogController extends BaseController {
 
     /**
      * Display a listing of the resource.
@@ -19,7 +21,6 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        Cache::tags('redis_post_cache_tag')->flush();
         $tag = $request->get('tag');
         $data = $this->dispatch(new BlogIndexData($tag));
         $layout = 'web.blog.layouts.index';
@@ -92,5 +93,18 @@ class BlogController extends Controller {
     public function destroy($id) {
         //
         Cache::tags('redis_post_cache_tag')->flush();
+    }
+
+    public function siteMap(SiteMap $siteMap) {
+        $map = $siteMap->getSiteMap();
+        if(! $this->makeFile($map,'SiteMap', 'xml')){
+            dd("生成站点地图失败");
+        }
+        dd("生成站点地图成功");
+    }
+
+    public function rss(RssFeed $feed) {
+        $rss = $feed->getRSS();
+        return response()->download($this->makeFile($rss, config("blog.title") . 'rss' . date("Ymd", time()), 'xml', 'files/rss'));
     }
 }

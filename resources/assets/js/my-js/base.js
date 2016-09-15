@@ -162,7 +162,7 @@
                 if (func && $.isFunction(func)) {
                     func.call(this, result);
                 }
-            }else {
+            } else {
                 if (nofunc && $.isFunction(nofunc)) {
                     nofunc.call(this, result);
                 }
@@ -302,12 +302,41 @@
             }
         });
         return _t;
-    }
+    };
+
+    $.fn.my_pickadate = function () {
+        var _t = $(this);
+        _t.pickadate({
+            format: "yyyy-m-d",
+            labelMonthNext: "下一个月",
+            labelMonthPrev: "前一个月",
+            labelMonthSelect: "选择月",
+            labelYearSelect: "选择年",
+            monthsFull: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            monthsShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
+            weekdaysFull: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+            weekdaysShort: ["日", "一", "二", "三", "四", "五", "六"],
+            today: "今天",
+            clear: "清空",
+            close: "关闭",
+            closeOnSelect: !0,
+            closeOnClear: !0,
+        });
+    };
+
+    $.fn.my_pickatime = function () {
+        var _t = $(this);
+        _t.pickatime({
+            format: "H:i",
+            clear: "清空",
+            interval: 15
+        });
+    };
 
     $.fn.form_validate = function (rules, messages) {
         var _t = $(this);
         var default_rules = $.extend({
-            name:{
+            name: {
                 required: true,
             },
             email: {
@@ -323,7 +352,7 @@
             },
         }, rules || {});
         var default_messages = $.extend({
-            name:{
+            name: {
                 required: "请输入姓名",
             },
             password_confirmation: {
@@ -376,7 +405,7 @@
             },
             highlight: function (e) {
                 //if(e.parent().parent())
-                if($(e).parent().parent().is('label')){
+                if ($(e).parent().parent().is('label')) {
                     $(e).parent().parent().removeClass('has-info').addClass('has-error');
                 }
                 //console.log($(e).parent().parent().is('label'));
@@ -384,7 +413,7 @@
             },
 
             success: function (e) {
-                if($(e).parent().is('label')){
+                if ($(e).parent().is('label')) {
                     $(e).parent().removeClass('has-error').addClass('has-info');
                 }
                 $(e).closest('.form-group').removeClass('has-error').addClass('has-info');

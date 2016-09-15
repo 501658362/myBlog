@@ -13,4 +13,5 @@ return [
     'author' => '陈彦瑾',
     'page_image' => 'home-bg.jpg',
     'posts_per_page' => 10,
+    'rss_size' => 25,
 ];
