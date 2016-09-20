@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Redis;
 class TestController extends Controller {
 
     public function __construct() {
-        //        $this->middleware('test') ;
+//                $this->middleware('test') ;
     }
 
     /**
@@ -22,15 +22,15 @@ class TestController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $word = "Hello, Toolmao!";
-        echo $word[7];
-        echo '111';
-        sleep(2);
-        echo '222';
-        dd(1);
-        $post = Post::getPosts();
-        Cache::tags('my-tag')->put('key',$post, 10);
-        Cache::tags('my-tag')->has('key');
+        return view("test.pay");
+        dd(\Illuminate\Support\Facades\Request::all());
+//        $word = "Hello, Toolmao!";
+//        echo $word[7];
+//        echo '111';
+//        sleep(2);
+//        echo '222';
+//        dd(1);
+
        dd( Cache::tags('my-tag')->has('key'),Cache::tags('my-tag')->get('key'));
 
         if (Cache::has('post')) {
