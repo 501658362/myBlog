@@ -36,10 +36,12 @@ Route::group(['namespace' => 'Mis', "prefix" => 'mis', 'middleware' => 'auth'], 
     post('upload/folder', 'UploadController@createFolder');
     delete('upload/folder', 'UploadController@deleteFolder');
 });
+
+Route::group(['middleware' => 'test'], function () {
+    Route::resource('test', 'TestController');
+});
 Route::group(['middleware' => 'auth'], function () {
-    Route::group(['middleware' => 'test'], function () {
-        Route::resource('test', 'TestController');
-    });
+
     // 个人中心
     Route::group(['namespace' => 'Mis'], function () {
         Route::resource('profile', 'ProfileController');
