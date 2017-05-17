@@ -148,7 +148,6 @@ return [
 
 
         //Laravel IDE Helper
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*

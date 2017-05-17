@@ -2,7 +2,7 @@
 return [
     'name' => "陈彦瑾的博客",
     'title' => '陈彦瑾的博客',
-    'subtitle' => 'http://chenyanjin.tk',
+    'subtitle' => '',
     'uploads' => [
         'storage' => 'local',
         'webpath' => '/uploads/',

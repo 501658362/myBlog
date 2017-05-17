@@ -16,7 +16,7 @@ class BaseServices {
      */
     protected function setCache($tagName, $cacheName, $model, $minutes = 0) {
         $minutes = $minutes ? : self::$cacheMinutes;
-        Cache::tags($tagName)->put($cacheName, $model, $minutes);
+//        Cache::tags($tagName)->put($cacheName, $model, $minutes);
     }
 
     /**
@@ -28,12 +28,17 @@ class BaseServices {
      * @return mixed
      */
     protected function getCache($tagName, $cacheName, $func, $parameter = null) {
-        if (empty( $model = Cache::tags($tagName)->get($cacheName) )) {
-            if (method_exists($this, $func)) {
-                $model = call_user_func(array ($this, $func), $parameter);
-                self::setCache($tagName, $cacheName, $model);
-            }
+//        if (empty( $model = Cache::tags($tagName)->get($cacheName) )) {
+//            if (method_exists($this, $func)) {
+//                $model = call_user_func(array ($this, $func), $parameter);
+//                self::setCache($tagName, $cacheName, $model);
+//            }
+//        }
+        if (method_exists($this, $func)) {
+            $model = call_user_func(array ($this, $func), $parameter);
+            return $model;
+//            self::setCache($tagName, $cacheName, $model);
         }
-        return $model;
+        return null;
     }
 }
