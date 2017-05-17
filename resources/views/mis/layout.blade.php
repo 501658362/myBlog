@@ -39,7 +39,6 @@
 @yield('content')
 
 <script src="{!! asset('assets/js/app.js') !!}"></script>
-<script src="{!! asset('assets/js/my-js/base.js') !!}"></script>
 @yield('scripts')
 
 </body>
