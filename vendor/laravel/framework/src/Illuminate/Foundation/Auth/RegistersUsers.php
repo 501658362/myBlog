@@ -16,6 +16,7 @@ trait RegistersUsers
      */
     public function getRegister()
     {
+        abort(404,'不开放注册咯！！');
         return view('auth.register');
     }
 
@@ -27,6 +28,7 @@ trait RegistersUsers
      */
     public function postRegister(Request $request)
     {
+        abort(404,'不开放注册咯！！');
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
