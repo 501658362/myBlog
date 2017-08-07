@@ -37,6 +37,8 @@ Route::group(['namespace' => 'Mis', "prefix" => 'mis', 'middleware' => 'auth'], 
     delete('upload/folder', 'UploadController@deleteFolder');
 });
 
+Route::resource('polygon', 'TestPolygonController');
+
 Route::group(['middleware' => 'test'], function () {
     Route::resource('test', 'TestController');
 });
