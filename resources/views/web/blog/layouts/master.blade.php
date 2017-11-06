@@ -13,8 +13,8 @@
 
     {{-- Styles --}}
     <link href="{!! asset("assets/css/blog.css") !!}" rel="stylesheet">
-    <link rel="shortcut icon" href="{!! asset("assets/images/favicon.png") !!}" type="image/vnd.microsoft.icon" />
-    <link rel="icon" href="{!! asset("assets/images/favicon.png") !!}" type="image/vnd.microsoft.icon" />
+    <link rel="shortcut icon" href="{!! asset("assets/images/favicon.ico") !!}" type="image/vnd.microsoft.icon" />
+    <link rel="icon" href="{!! asset("assets/images/favicon.ico") !!}" type="image/vnd.microsoft.icon" />
     @yield('styles')
 
   {{-- HTML5 Shim and Respond.js for IE8 support --}}
