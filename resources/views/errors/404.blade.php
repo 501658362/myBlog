@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">{{$exception->getMessage()}}<a href="{!! url('/') !!}">返回首页</a></div>
+                <div class="title">{{$exception->getMessage()}}<a href="{!! url('/') !!}">Return Index</a></div>
             </div>
         </div>
     </body>
