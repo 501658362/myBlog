@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Mis;
 use App\Http\Model\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\TagCreateRequest;
-use App\Http\Requests\TagUpdateRequesT;
+use App\Http\Requests\TagUpdateRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -92,11 +92,11 @@ class TagController extends BaseController
 
     /**
      * Update the specified resource in storage.
-     * @param TagUpdateRequesT $request
+     * @param TagUpdateRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TagUpdateRequesT $request, $id)
+    public function update(TagUpdateRequest $request, $id)
     {
         $tag = Tag::findOrFail($id);
 
