@@ -16,7 +16,9 @@ class TestController extends Controller {
     public function __construct() {
 //                $this->middleware('test') ;
     }
-
+    public function baidu() {
+        echo "<html><head></head><body>b3yOLF9KNE</body></html>";
+    }
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
