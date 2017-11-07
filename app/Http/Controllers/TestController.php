@@ -17,7 +17,7 @@ class TestController extends Controller {
 //                $this->middleware('test') ;
     }
     public function baidu() {
-        echo "<html><head></head><body>b3yOLF9KNE</body></html>";
+        return view("baidu");
     }
     /**
      * Display a listing of the resource.
