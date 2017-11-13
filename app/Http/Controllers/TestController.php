@@ -18,7 +18,6 @@ class TestController extends Controller {
 //                $this->middleware('test') ;
     }
     public function webhook(Request $request) {
-        Log::info($request->all());
         exec("cd /root/myBlog && git pull");
         return view("baidu");
     }
@@ -30,7 +29,7 @@ class TestController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        dd(1);
+        dd(2);
         return view("test.pay");
         dd(\Illuminate\Support\Facades\Request::all());
 //        $word = "Hello, Toolmao!";
