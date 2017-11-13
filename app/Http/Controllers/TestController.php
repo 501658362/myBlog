@@ -19,6 +19,7 @@ class TestController extends Controller {
     }
     public function webhook(Request $request) {
         Log::info($request->all());
+        exec("cd /root/myBlog && git pull");
         return view("baidu");
     }
     public function baidu() {
