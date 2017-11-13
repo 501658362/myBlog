@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Mis', "prefix" => 'mis', 'middleware' => 'auth'], 
 Route::resource('polygon', 'TestPolygonController');
 Route::any('baidu_verify_b3yOLF9KNE.html', 'TestController@baidu');
 
+Route::post('testwebhook', 'TestController@webhook');
 Route::group(['middleware' => 'test'], function () {
     Route::resource('test', 'TestController');
 });

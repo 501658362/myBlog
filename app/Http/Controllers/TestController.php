@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
 
@@ -15,6 +16,10 @@ class TestController extends Controller {
 
     public function __construct() {
 //                $this->middleware('test') ;
+    }
+    public function webhook(Request $request) {
+        Log::info($request->all());
+        return view("baidu");
     }
     public function baidu() {
         return view("baidu");
@@ -179,6 +184,7 @@ return [
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        dd(2);
         $data = $request->only('name', 'email', 'phone');
         $data[ 'messageLines' ] = explode("\n", $request->get('message'));
         $is = Mail::queue('test.contact', $data, function ($message) use ($data) {
