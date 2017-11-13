@@ -18,6 +18,7 @@ class TestController extends Controller {
 //                $this->middleware('test') ;
     }
     public function webhook(Request $request) {
+        Log::info("git push 啦  该更新代码啦~");
         exec("cd /root/myBlog && git pull");
         return view("baidu");
     }
