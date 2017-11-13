@@ -35,11 +35,15 @@
                             Posted on {{ $post->published_at->format('Y-m-d') }}
                             @if ($post->tags->count())
                                 in
-                                {!! join(', ', $post->tagLinks()) !!}
-                            @endif
+                            {!! join(', ', $post->tagLinks()) !!}
+                        @endif
+
                         <!-- UYAN COUNT BEGIN -->
-                            <a class="pull-right" href="/blog/{!! $post->slug !!}" id="uyan_count_unit" su="{!! $post->slug !!}">0条评论</a>
+                            <a class="pull-right"
+                               style="    color: #808080;    font-size: 18px;    font-style: italic;    margin-top: 0;"
+                               href="/blog/{!! $post->slug !!}" id="uyan_count_unit" su="{!! $post->slug !!}">评论(0)</a>
                             <!-- UYAN COUNT END -->
+                            <font style="margin-right: 10px"  class="pull-right">阅读({!! $post->views !!})</font>
                         </p>
                     </div>
                     <hr>

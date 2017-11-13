@@ -24,6 +24,8 @@ class PostServices extends BaseServices {
 
     protected function getPostModel($slug){
         $post = Post::with('tags')->whereSlug($slug)->firstOrFail();
+        $post->views = $post->views + 1;
+        $post->save();
         return $post;
     }
 
@@ -48,7 +50,8 @@ class PostServices extends BaseServices {
             'slug',
             'title',
             'subtitle',
-            'published_at'
+            'published_at',
+            'views'
         ])->where('published_at', '<=', Carbon::now())->where('is_draft', 0)->orderBy('published_at', 'desc')->paginate($limit);
         $posts->addQuery('limit', $limit);
         return $posts;
