@@ -35,5 +35,6 @@
 <script src="{!! asset("assets/js/blog.js") !!}"></script>
 @yield('scripts')
 
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2113073"></script>
 </body>
 </html>

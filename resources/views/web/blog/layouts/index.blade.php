@@ -37,6 +37,9 @@
                                 in
                                 {!! join(', ', $post->tagLinks()) !!}
                             @endif
+                        <!-- UYAN COUNT BEGIN -->
+                            <a class="pull-right" href="/blog/{!! $post->slug !!}" id="uyan_count_unit" su="{!! $post->slug !!}">0条评论</a>
+                            <!-- UYAN COUNT END -->
                         </p>
                     </div>
                     <hr>
