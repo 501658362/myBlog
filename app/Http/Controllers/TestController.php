@@ -30,6 +30,7 @@ class TestController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        dd(1);
         return view("test.pay");
         dd(\Illuminate\Support\Facades\Request::all());
 //        $word = "Hello, Toolmao!";
