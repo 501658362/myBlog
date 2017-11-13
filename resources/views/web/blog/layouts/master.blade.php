@@ -36,5 +36,9 @@
 @yield('scripts')
 
 <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2113073"></script>
+
+{{--添加站点统计--}}
+{{--<script src="https://s22.cnzz.com/z_stat.php?id=1269272405&web_id=1269272405" language="JavaScript"></script>--}}
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1269272405'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1269272405%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 </html>
