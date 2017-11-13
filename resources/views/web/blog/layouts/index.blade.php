@@ -52,14 +52,14 @@
                                 <a href="{!! $posts->url($posts->currentPage() - 1) !!}">
                                     <i class="fa fa-long-arrow-left fa-lg"></i>
                                     {{--Previous {{ $tag->tag }} Posts--}}
-                                    Previous  Page
+                                    Previous Page
                                 </a>
                             </li>
                         @endif
                         @if ($posts->hasMorePages())
                             <li class="next">
                                 <a href="{!! $posts->nextPageUrl() !!}">
-                                    Next  Page
+                                    Next Page
                                     {{--Next {{ $tag->tag }} Posts--}}
                                     <i class="fa fa-long-arrow-right"></i>
                                 </a>

@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class BlogController extends BaseController {
 
@@ -24,12 +25,12 @@ class BlogController extends BaseController {
         $tag = $request->get('tag');
         $data = $this->dispatch(new BlogIndexData($tag));
         $layout = 'web.blog.layouts.index';
-        return view($layout, $data);
+        return parent::view($layout, $data);
         //        $posts = Post::where('published_at', '<=', Carbon::now())
         //            ->orderBy('published_at', 'desc')
         //            ->paginate(config('blog.posts_per_page'));
         //
-        //        return view('Web.Blog.index', compact('posts'));
+        //        return parent::view('Web.Blog.index', compact('posts'));
     }
 
     /**
@@ -61,9 +62,9 @@ class BlogController extends BaseController {
         if ($tag) {
             $tag = Tag::whereTag($tag)->firstOrFail();
         }
-        return view($post->layout, compact('post', 'tag', 'slug'));
+        return parent::view($post->layout, compact('post', 'tag', 'slug'));
         //        $post = Post::whereSlug($slug)->firstOrFail();
-        //        return view('Web.Blog.post')->withPost($post);
+        //        return parent::view('Web.Blog.post')->withPost($post);
     }
 
     /**
@@ -105,6 +106,7 @@ class BlogController extends BaseController {
 
     public function rss(RssFeed $feed) {
         $rss = $feed->getRSS();
+        dd("O__O  额 好像有问题。。");
         return response()->download($this->makeFile($rss, config("blog.title") . 'rss' . date("Ymd", time()), 'xml', 'files/rss'));
     }
 }

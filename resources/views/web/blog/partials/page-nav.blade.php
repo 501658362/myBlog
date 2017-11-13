@@ -19,7 +19,18 @@
                 <li>
                     <a href="/blog">Home</a>
                 </li>
+
+                @if(count($tagCount) > 0)
+                    @foreach($tagCount as $item)
+                        <li>
+                            <a style="text-transform:none" href="/blog?tag={!! $item['tag'] !!}"> {!! $item['tag']."(".$item['count'].")"  !!}</a>
+                        </li>
+
+                    @endforeach
+                @endif
             </ul>
         </div>
+
+
     </div>
 </nav>
