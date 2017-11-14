@@ -20,7 +20,7 @@ class TestController extends Controller {
     public function webhook(Request $request) {
         Log::info("git push 啦  该更新代码啦~");
         $data = [];
-        exec('/home/wwwroot/chenyanjin.tk/myBlog/updateGit.sh 2>&1', $data, $data1);
+        exec('cd /home/wwwroot/chenyanjin.tk/myBlog/ && /home/wwwroot/chenyanjin.tk/myBlog/updateGit.sh 2>&1', $data, $data1);
         Log::info($data );
         Log::info($data1);
         return view("baidu");
