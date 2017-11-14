@@ -20,8 +20,9 @@ class TestController extends Controller {
     public function webhook(Request $request) {
         Log::info("git push 啦  该更新代码啦~");
         $data = [];
-        passthru("cd /root/myBlog && echo hello > hello.txt && git pull", $data);
-        Log::info($data);
+        exec("cd /root/myBlog && git pull 2>&1", $data, $data1);
+        Log::info($data );
+        Log::info($data1);
         return view("baidu");
     }
     public function baidu() {
