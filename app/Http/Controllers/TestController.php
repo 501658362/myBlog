@@ -25,6 +25,9 @@ class TestController extends Controller {
     public function baidu() {
         return view("baidu");
     }
+    public function google() {
+        return view("google");
+    }
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
