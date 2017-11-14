@@ -2,5 +2,7 @@
 Homestead.yaml
 Homestead.json
 .idea
-/public
+/public/js/
+/public/css/
+/public/assets/
 /vendor
