@@ -98,10 +98,12 @@ class BlogController extends BaseController {
 
     public function siteMap(SiteMap $siteMap) {
         $map = $siteMap->getSiteMap();
-        if(! $this->makeFile($map,'SiteMap', 'xml')){
-            dd("生成站点地图失败");
-        }
-        dd("生成站点地图成功");
+        return response($map)
+            ->header('Content-type', 'text/xml');
+//        if(! $this->makeFile($map,'SiteMap', 'xml')){
+//            dd("生成站点地图失败");
+//        }
+//        dd("生成站点地图成功");
     }
 
     public function rss(RssFeed $feed) {
