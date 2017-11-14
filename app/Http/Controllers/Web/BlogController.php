@@ -100,6 +100,7 @@ class BlogController extends BaseController {
         $map = $siteMap->getSiteMap();
         return response($map)
             ->header('Content-type', 'text/xml');
+        
 //        if(! $this->makeFile($map,'SiteMap', 'xml')){
 //            dd("生成站点地图失败");
 //        }
