@@ -84,7 +84,10 @@
                 </div>
             </div>
         </div>
+        @include("mis.post.markdown")
+
     </div>
+
 
 @stop
 
