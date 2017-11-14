@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://chenyanjin.tk/</loc>
+    <lastmod>2017-11-14 09:54:43</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://chenyanjin.tk/blog/ssr</loc>
+    <lastmod>2017-11-14 09:54:43</lastmod>
+  </url>
+  <url>
+    <loc>http://chenyanjin.tk/blog/lnmp-unknown-open-basedir-restriction-in-effect</loc>
+    <lastmod>2017-11-07 17:55:05</lastmod>
+  </url>
+  <url>
+    <loc>http://chenyanjin.tk/blog/git-gitignore</loc>
+    <lastmod>2017-11-13 16:07:59</lastmod>
+  </url>
+  <url>
+    <loc>http://chenyanjin.tk/blog/git-merge-master</loc>
+    <lastmod>2017-07-13 19:54:55</lastmod>
+  </url>
+  <url>
+    <loc>http://chenyanjin.tk/blog/mysql-1</loc>
+    <lastmod>2017-06-22 15:02:48</lastmod>
+  </url>
+  <url>
+    <loc>http://chenyanjin.tk/blog/4</loc>
+    <lastmod>2017-11-13 19:16:19</lastmod>
+  </url>
+  <url>
+    <loc>http://chenyanjin.tk/blog/stdclass</loc>
+    <lastmod>2016-09-26 12:47:29</lastmod>
+  </url>
+  <url>
+    <loc>http://chenyanjin.tk/blog/1</loc>
+    <lastmod>2017-11-14 00:37:55</lastmod>
+  </url>
+  <url>
+    <loc>http://chenyanjin.tk/blog/laravel-1</loc>
+    <lastmod>2016-09-19 04:26:10</lastmod>
+  </url>
+  <url>
+    <loc>http://chenyanjin.tk/blog/laravel</loc>
+    <lastmod>2017-05-18 14:08:45</lastmod>
+  </url>
+  <url>
+    <loc>http://chenyanjin.tk/blog/mysql</loc>
+    <lastmod>2017-05-18 13:59:42</lastmod>
+  </url>
+</urlset>
