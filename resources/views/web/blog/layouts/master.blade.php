@@ -36,7 +36,6 @@
 <script src="{!! asset("assets/js/blog.js") !!}"></script>
 @yield('scripts')
 
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2113073"></script>
 
 {{--添加站点统计--}}
 {{--<script src="https://s22.cnzz.com/z_stat.php?id=1269272405&web_id=1269272405" language="JavaScript"></script>--}}
@@ -57,5 +56,8 @@
         s.parentNode.insertBefore(bp, s);
     })();
 </script>
+
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2113073"></script>
+
 </body>
 </html>
