@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Input;
 
 class PostServices extends BaseServices {
-
+    
     const REDIS_POST_CACHE_TAG = 'redis_post_cache_tag';
     const REDIS_POST_CACHE     = 'redis_post_cache_';
-
+    
     /**
      * 根据slug获取单个文章
      * @param $slug
@@ -19,21 +19,20 @@ class PostServices extends BaseServices {
      */
     public function getPost($slug) {
         $cacheName = self::REDIS_POST_CACHE . '_slug_' . $slug;
-        return self::getCache(self::REDIS_POST_CACHE_TAG, $cacheName, "getPostModel",$slug);
-
+        return self::getCache(self::REDIS_POST_CACHE_TAG, $cacheName, "getPostModel", $slug);
     }
-
-    protected function getPostModel($slug){
+    
+    protected function getPostModel($slug) {
         $post = Post::with('tags')->whereSlug($slug)->firstOrFail();
-        if (Auth::check()) {
+        // 登录用户 不增加阅读量
+        if (!Auth::check()) {
             // The user is logged in...
             $post->views = $post->views + 1;
             $post->save();
         }
-    
         return $post;
     }
-
+    
     /**
      * 获取文章list
      * @return mixed
@@ -44,7 +43,7 @@ class PostServices extends BaseServices {
         $cacheName = self::REDIS_POST_CACHE . $limit . '_' . $page;
         return self::getCache(self::REDIS_POST_CACHE_TAG, $cacheName, "getPostsModel");
     }
-
+    
     /**
      * 获取文章的Model
      * @return mixed
@@ -61,7 +60,7 @@ class PostServices extends BaseServices {
         $posts->addQuery('limit', $limit);
         return $posts;
     }
-
+    
     /**
      * 根据tag获取文章
      * @param $tag
@@ -77,7 +76,7 @@ class PostServices extends BaseServices {
         $posts->addQuery('limit', $limit);
         return $posts;
     }
-
+    
     /**
      * 根据tag获取文章model
      * @param $tag
