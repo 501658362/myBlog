@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Http\Model\Post;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Input;
 
@@ -24,8 +25,12 @@ class PostServices extends BaseServices {
 
     protected function getPostModel($slug){
         $post = Post::with('tags')->whereSlug($slug)->firstOrFail();
-        $post->views = $post->views + 1;
-        $post->save();
+        if (Auth::check()) {
+            // The user is logged in...
+            $post->views = $post->views + 1;
+            $post->save();
+        }
+    
         return $post;
     }
 
