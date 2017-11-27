@@ -4,7 +4,7 @@
 <script type="text/javascript">
     var uyan_config = {
         'su':'{!! $slug !!}',
-        'du':'www.chenyanjin.tk',
+        'du':'www.chenyanjin.top',
     };
 </script>
 
