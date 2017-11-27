@@ -39,9 +39,6 @@
                         @endif
 
                         <!-- UYAN COUNT BEGIN -->
-                            <!-- UYAN COUNT BEGIN -->
-                            <a   href="{!! url("/blog/$post->slug") !!}" id="uyan_count_unit" du=www.chenyanjin.top" su="{!! $post->slug !!}">0条评论</a>
-                            <!-- UYAN COUNT END -->
                             <a class="pull-right"
                                style="    color: #808080;    font-size: 18px;    font-style: italic;    margin-top: 0;"
                                href="{!! url("/blog/$post->slug") !!}" id="uyan_count_unit" du=www.chenyanjin.top" su="{!! $post->slug !!}">评论(0)</a>
