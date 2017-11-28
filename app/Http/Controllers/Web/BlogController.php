@@ -57,7 +57,11 @@ class BlogController extends BaseController {
      * @return \Illuminate\Http\Response
      */
     public function show($slug, Request $request) {
-        $post = PostServices::getPost($slug);
+        $isSiteMap = false;
+        if($request->get("sitemap") == 1){
+            $isSiteMap = true;
+        }
+        $post = PostServices::getPost($slug, $isSiteMap);
         $tag = $request->get('tag');
         if ($tag) {
             $tag = Tag::whereTag($tag)->firstOrFail();

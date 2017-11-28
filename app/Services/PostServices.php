@@ -18,14 +18,15 @@ class PostServices extends BaseServices {
      * @return mixed
      */
     public function getPost($slug) {
-        $cacheName = self::REDIS_POST_CACHE . '_slug_' . $slug;
-        return self::getCache(self::REDIS_POST_CACHE_TAG, $cacheName, "getPostModel", $slug);
+        //        $cacheName = self::REDIS_POST_CACHE . '_slug_' . $slug;
+        //        return self::getCache(self::REDIS_POST_CACHE_TAG, $cacheName, "getPostModel", $slug);
+        return self::getPostModel($slug);
     }
     
-    protected function getPostModel($slug) {
+    protected function getPostModel($slug, $isSiteMap = false) {
         $post = Post::with('tags')->whereSlug($slug)->firstOrFail();
         // 登录用户 不增加阅读量
-        if (!Auth::check()) {
+        if (!Auth::check() && !$isSiteMap) {
             // The user is logged in...
             $post->views = $post->views + 1;
             $post->save();
@@ -38,10 +39,11 @@ class PostServices extends BaseServices {
      * @return mixed
      */
     public function getPosts() {
-        $limit = Input::get('limit', config('blog.posts_per_page'));
-        $page = Input::get('page', 1);
-        $cacheName = self::REDIS_POST_CACHE . $limit . '_' . $page;
-        return self::getCache(self::REDIS_POST_CACHE_TAG, $cacheName, "getPostsModel");
+        //        $limit = Input::get('limit', config('blog.posts_per_page'));
+        //        $page = Input::get('page', 1);
+        //        $cacheName = self::REDIS_POST_CACHE . $limit . '_' . $page;
+        //        return self::getCache(self::REDIS_POST_CACHE_TAG, $cacheName, "getPostsModel");
+        return self::getPostsModel();
     }
     
     /**
@@ -83,9 +85,10 @@ class PostServices extends BaseServices {
      * @return mixed
      */
     public function getPostsByTag($tag) {
-        $limit = Input::get('limit', config('blog.posts_per_page'));
-        $page = Input::get('page', 1);
-        $cacheName = self::REDIS_POST_CACHE . $limit . '_' . $page . '_' . $tag->title;
-        return self::getCache(self::REDIS_POST_CACHE_TAG, $cacheName, "getPostsByTagModal", $tag);
+        //        $limit = Input::get('limit', config('blog.posts_per_page'));
+        //        $page = Input::get('page', 1);
+        //        $cacheName = self::REDIS_POST_CACHE . $limit . '_' . $page . '_' . $tag->title;
+        //        return self::getCache(self::REDIS_POST_CACHE_TAG, $cacheName, "getPostsByTagModal", $tag);
+        return self::getPostsByTagModal($tag);
     }
 }

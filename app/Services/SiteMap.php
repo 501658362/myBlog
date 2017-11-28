@@ -39,7 +39,7 @@ class SiteMap extends BaseServices {
         $xml[] = '  </url>';
         foreach ($postsInfo as $slug => $lastmod) {
             $xml[] = '  <url>';
-            $xml[] = "    <loc>{$url}blog/$slug</loc>";
+            $xml[] = "    <loc>{$url}blog/$slug?sitemap=1</loc>";
             $xml[] = "    <lastmod>$lastmod</lastmod>";
             $xml[] = "  </url>";
         }
