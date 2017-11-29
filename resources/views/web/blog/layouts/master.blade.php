@@ -7,7 +7,6 @@
     <meta name="description" content="{{ $meta_description }}">
     <meta name="author" content="{{ config('blog.author') }}">
     <meta name="baidu-site-verification" content="b3yOLF9KNE" />
-    <meta name='TTUNION_verify' content='5feedb92339d8f5574c8af2f62f9f93b'>
     <title>{{ $title or config('blog.title') }}</title>
     <link rel="alternate" type="application/rss+xml" href="{{ url('rss') }}"
           title="RSS Feed {{ config('blog.title') }}">
