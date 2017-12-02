@@ -38,7 +38,7 @@
                         </a>
                     </li>
                 </ul>
-                <p class="copyright">Copyright © {{ config('blog.author') }}</p>
+                <p class="copyright">Copyright © {{ config('blog.author') }}  &nbsp;<a class="red" target="_blank" href="{!! url('contact') !!}">联系我</a></p>
             </div>
         </div>
     </div>

@@ -81,12 +81,12 @@
             </div>
             <!-- /widget-main -->
 
-            <div class="toolbar center" style="    background: #c16050;border-top: 2px solid #976559;padding: 9px 18px;">
-                <a href="{!! url('auth/login') !!}" class="back-to-login-link" style="    color: #FE9;font-size: 14px;font-weight: bold;text-shadow: 1px 0 1px rgba(0, 0, 0, 0.25);">
-                    {!! trans('language.return_login') !!}
-                    <i class="icon-arrow-right"></i>
-                </a>
-            </div>
+            {{--<div class="toolbar center" style="    background: #c16050;border-top: 2px solid #976559;padding: 9px 18px;">--}}
+                {{--<a href="{!! url('auth/login') !!}" class="back-to-login-link" style="    color: #FE9;font-size: 14px;font-weight: bold;text-shadow: 1px 0 1px rgba(0, 0, 0, 0.25);">--}}
+                    {{--{!! trans('language.return_login') !!}--}}
+                    {{--<i class="icon-arrow-right"></i>--}}
+                {{--</a>--}}
+            {{--</div>--}}
         </div>
         <!-- /widget-body -->
     </div><!-- /contact -->

@@ -9,7 +9,7 @@ namespace App\Services;
 
 class SendEmailService {
     
-    function send_mail($data, $subject = '亲，有新的 webhook 触发哦! 请查看执行结果 ！', $to = 'peng501658@gmail.com') {
+    function send_mail($data = "", $subject = '亲，有新的 webhook 触发哦! 请查看执行结果 ！', $to = 'peng501658@gmail.com') {
         $url = 'http://api.sendcloud.net/apiv2/mail/send';
         $API_USER = 'chenyanjin.top';
         $API_KEY = 'ibbHiX2PBvb0XF7E';
@@ -20,10 +20,11 @@ class SendEmailService {
             'fromName'    => '陈彦瑾的博客',
             'to'          => $to,# 收件人地址, 用正确邮件地址替代, 多个地址用';'分隔
             'subject'     => $subject,
-            'html'        => 'Hi, 以下是您的邮件内容 <br>  ' . var_export($data, true),
+            'html'        => 'Hi, 以下是您的邮件内容 <br>  ' .  $data,
             'respEmailId' => 'true'
         );
         $data = http_build_query($param);
+        
         $options = array (
             'http' => array (
                 'method'  => 'POST',

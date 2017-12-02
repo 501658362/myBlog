@@ -19,8 +19,7 @@ class WebhookController extends Controller {
         exec('cd /home/wwwroot/chenyanjin.tk/myBlog/ && /home/wwwroot/chenyanjin.tk/myBlog/updateGit.sh 2>&1', $data, $data1);
         Log::info($data);
         Log::info($data1);
-        SendEmailService::send_mail(["执行结果" => $data]);
+        SendEmailService::send_mail(var_export(["执行结果" => $data], true));
         return response()->json($data);
     }
-    
 }
