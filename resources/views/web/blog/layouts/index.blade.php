@@ -1,8 +1,5 @@
 @extends('web.blog.layouts.master')
 
-@section('keywords')
-    {{ $title }},{{ $subtitle }},
-@stop
 @section('page-header')
     <header class="intro-header"
             style="background-image: url('{{ page_image($page_image) }}')">
