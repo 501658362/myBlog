@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class BlogController extends BaseController {
-
+    
     /**
      * Display a listing of the resource.
      * @param Request $request
@@ -32,7 +32,7 @@ class BlogController extends BaseController {
         //
         //        return parent::view('Web.Blog.index', compact('posts'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
@@ -40,7 +40,7 @@ class BlogController extends BaseController {
     public function create() {
         //
     }
-
+    
     /**
      * Store a newly created resource in storage.
      * @param  \Illuminate\Http\Request $request
@@ -49,7 +49,7 @@ class BlogController extends BaseController {
     public function store(Request $request) {
         //
     }
-
+    
     /**
      * Display the specified resource.
      * @param $slug
@@ -58,7 +58,7 @@ class BlogController extends BaseController {
      */
     public function show($slug, Request $request) {
         $isSiteMap = false;
-        if($request->get("sitemap") == 1){
+        if ($request->get("sitemap") == 1) {
             $isSiteMap = true;
         }
         $post = PostServices::getPost($slug, $isSiteMap);
@@ -70,7 +70,7 @@ class BlogController extends BaseController {
         //        $post = Post::whereSlug($slug)->firstOrFail();
         //        return parent::view('Web.Blog.post')->withPost($post);
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      * @param  int $id
@@ -79,7 +79,7 @@ class BlogController extends BaseController {
     public function edit($id) {
         //
     }
-
+    
     /**
      * Update the specified resource in storage.
      * @param  \Illuminate\Http\Request $request
@@ -89,7 +89,7 @@ class BlogController extends BaseController {
     public function update(Request $request, $id) {
         //
     }
-
+    
     /**
      * Remove the specified resource from storage.
      * @param  int $id
@@ -99,21 +99,22 @@ class BlogController extends BaseController {
         //
         Cache::tags('redis_post_cache_tag')->flush();
     }
-
+    
     public function siteMap(SiteMap $siteMap) {
         $map = $siteMap->getSiteMap();
-        return response($map)
-            ->header('Content-type', 'text/xml');
-        
-//        if(! $this->makeFile($map,'SiteMap', 'xml')){
-//            dd("生成站点地图失败");
-//        }
-//        dd("生成站点地图成功");
+        return response($map)->header('Content-type', 'text/xml');
+        //        if(! $this->makeFile($map,'SiteMap', 'xml')){
+        //            dd("生成站点地图失败");
+        //        }
+        //        dd("生成站点地图成功");
     }
-
+    
     public function rss(RssFeed $feed) {
-        $rss = $feed->getRSS();
-        dd("O__O  额 好像有问题。。");
-        return response()->download($this->makeFile($rss, config("blog.title") . 'rss' . date("Ymd", time()), 'xml', 'files/rss'));
+        try {
+            $rss = $feed->getRSS();
+            return response()->download($this->makeFile($rss, config("blog.title") . 'rss' . date("Ymd", time()), 'xml', 'files/rss'));
+        } catch (\Exception $e) {
+            dd("O__O  额 好像有问题。。");
+        }
     }
 }

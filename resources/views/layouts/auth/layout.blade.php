@@ -4,7 +4,7 @@
 
     @include('layouts.Mis.meta')
 
-    <title>BLOG MIS</title>
+    <title>{{ $title or config('blog.title') }}</title>
 
     @include('layouts.auth.css')
 </head>
