@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\PostServices;
+use App\Services\SendEmailService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
         //
         $this->app->singleton('PostServices', function () {
             return new PostServices();
+        });
+        //
+        $this->app->singleton('SendEmailService', function () {
+            return new SendEmailService();
         });
     }
 }

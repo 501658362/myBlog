@@ -41,7 +41,7 @@ Route::resource('polygon', 'TestPolygonController');
 Route::any('baidu_verify_b3yOLF9KNE.html', 'TestController@baidu');
 Route::any('googleda1c149b907248d9.html', 'TestController@google');
 
-Route::post('testwebhook', 'TestController@webhook');
+Route::any('testwebhook', 'WebhookController@gitWebhook');
 Route::group(['middleware' => 'test'], function () {
     Route::resource('test', 'TestController');
 });

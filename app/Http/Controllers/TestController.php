@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Facades\SendEmailService;
 use App\Http\Model\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,24 +14,21 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
 
 class TestController extends Controller {
-
+    
     public function __construct() {
-//                $this->middleware('test') ;
+        //                $this->middleware('test') ;
     }
-    public function webhook(Request $request) {
-        Log::info("git push 啦  该更新代码啦~");
-        $data = [];
-        exec('cd /home/wwwroot/chenyanjin.tk/myBlog/ && /home/wwwroot/chenyanjin.tk/myBlog/updateGit.sh 2>&1', $data, $data1);
-        Log::info($data );
-        Log::info($data1);
-        return view("baidu");
-    }
+   
+    
+     
     public function baidu() {
         return view("baidu");
     }
+    
     public function google() {
         return view("google");
     }
+    
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
@@ -39,15 +37,13 @@ class TestController extends Controller {
         dd(3);
         return view("test.pay");
         dd(\Illuminate\Support\Facades\Request::all());
-//        $word = "Hello, Toolmao!";
-//        echo $word[7];
-//        echo '111';
-//        sleep(2);
-//        echo '222';
-//        dd(1);
-
-       dd( Cache::tags('my-tag')->has('key'),Cache::tags('my-tag')->get('key'));
-
+        //        $word = "Hello, Toolmao!";
+        //        echo $word[7];
+        //        echo '111';
+        //        sleep(2);
+        //        echo '222';
+        //        dd(1);
+        dd(Cache::tags('my-tag')->has('key'), Cache::tags('my-tag')->get('key'));
         if (Cache::has('post')) {
             echo '存在chche,读取' . '<br />';
             echo Cache::get('post');
@@ -69,7 +65,7 @@ class TestController extends Controller {
             $post = Post::All();
             $redis->set('postList', $post);
             //过期时间
-            $redis->expire('postList',10);
+            $redis->expire('postList', 10);
             dd("不存在" . $post);
         }
         Redis::lPush('namex', 'Taylo1r');
@@ -87,18 +83,18 @@ class TestController extends Controller {
         //        $values = Redis::lrange('names', 5, 10);
         dd(Redis::get('name1'));
     }
-
+    
     public function indexMis() {
         return view("layouts.Mis.master");
     }
-
+    
     public function getPath() {
         $path = __DIR__ . '/../../Resources/lang/zh-CN';
         $old = $path . DIRECTORY_SEPARATOR . 'area_code.php';
         $dir = $path . DIRECTORY_SEPARATOR . 'Changed';
         $new = $dir . DIRECTORY_SEPARATOR . 'area_code_' . date("Ymd_H_i_s");
     }
-
+    
     /**
      * 修改文件
      */
@@ -124,7 +120,7 @@ return [
 ];';
         dd(\File::put($envPath, $data));
     }
-
+    
     /**
      *修改ENV
      */
@@ -155,7 +151,7 @@ return [
         //        dd($contentArray,$content);
         dd(\File::put($envPath, $content));
     }
-
+    
     public function indexEmail() {
         $is = Mail::send('test.email', ['testVar' => '123'], function ($message) {
             $message->to('maziqiang@ubtour.com', '马自强')->subject('Hello wo shi chenchaopeng');
@@ -163,7 +159,7 @@ return [
         dd($is);
         return view("test.email");
     }
-
+    
     public function indexMysql() {
         $con = mysqli_connect('127.0.0.1', 'root', '', 'try');
         if (!$con) {
@@ -176,7 +172,7 @@ return [
             echo json_encode($r, JSON_UNESCAPED_UNICODE) . '<br>';
         }
     }
-
+    
     /**
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
@@ -185,7 +181,7 @@ return [
         //
         return view("contact");
     }
-
+    
     /**
      * Store a newly created resource in storage.
      * @param  \Illuminate\Http\Request $request
@@ -204,7 +200,7 @@ return [
         dd($is);
         //
     }
-
+    
     /**
      * Display the specified resource.
      * @param  int $id
@@ -213,7 +209,7 @@ return [
     public function show($id) {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      * @param  int $id
@@ -222,7 +218,7 @@ return [
     public function edit($id) {
         //
     }
-
+    
     /**
      * Update the specified resource in storage.
      * @param  \Illuminate\Http\Request $request
@@ -232,7 +228,7 @@ return [
     public function update(Request $request, $id) {
         //
     }
-
+    
     /**
      * Remove the specified resource from storage.
      * @param  int $id
