@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 class WebhookController extends Controller {
     
     public function gitWebhook(Request $request) {
-        $requestData = $request->all();
+        $requestData =  $request->header("X-Hub-Signature");
         Log::info("git push 啦  该更新代码啦~");
         $data = [];
         exec('cd /home/wwwroot/chenyanjin.tk/myBlog/ && /home/wwwroot/chenyanjin.tk/myBlog/updateGit.sh 2>&1', $data, $data1);
