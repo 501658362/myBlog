@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="陈彦瑾的博客,陈彦瑾,chenyanjin.陈超鹏">
+    <meta name="keywords" content="@yield('keywords')陈彦瑾的博客,陈彦瑾,chenyanjin">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ $meta_description }}  陈彦瑾,陈超鹏,陈彦瑾的博客,chenyanjin,chenchaopeng,chenyanjin.top,www.chenyanjin.top,彦瑾,陈,博客">
     <meta name="author" content="{{ config('blog.author') }}">
