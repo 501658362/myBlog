@@ -22,4 +22,5 @@ class WebhookController extends Controller {
         SendEmailService::send_mail(var_export(["执行结果" => $data], true));
         return response()->json($data);
     }
+    
 }
