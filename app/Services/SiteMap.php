@@ -28,7 +28,7 @@ class SiteMap extends BaseServices {
         sort($dates);
         $lastmod = last($dates);
         $lastmod = strtotime($lastmod);
-        $lastmod = date("YYYY-MM-DDThh:mmTZD", $lastmod);
+        $lastmod = date('c', $lastmod);
         $url = trim(url(), '/') . '/';
         $xml = [];
         $xml[] = '<?xml version="1.0" encoding="UTF-8"?' . '>';
@@ -40,8 +40,9 @@ class SiteMap extends BaseServices {
         $xml[] = '    <priority>0.8</priority>';
         $xml[] = '  </url>';
         foreach ($postsInfo as $slug => $lastmod) {
+            
             $lastmod = strtotime($lastmod);
-            $lastmod = date("YYYY-MM-DDThh:mmTZD", $lastmod);
+            $lastmod = date('c', $lastmod);
             $xml[] = '  <url>';
             $xml[] = "    <loc>{$url}blog/$slug?sitemap=1</loc>";
             $xml[] = "    <lastmod>$lastmod</lastmod>";
