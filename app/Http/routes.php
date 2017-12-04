@@ -20,6 +20,7 @@ Route::group(['namespace' => 'Web'], function () {
     get('blog/{slug}', 'BlogController@show');
     //站点地图
     get('sitemap.xml', 'BlogController@siteMap');
+    get('sitemap.xml1', 'BlogController@siteMap1');
     //RSS 订阅
     get('rss', 'BlogController@rss');
 });

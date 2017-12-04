@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
 class SiteMap extends BaseServices {
-
+    
     /**
      * Return the content of the Site Map
      */
@@ -18,7 +18,7 @@ class SiteMap extends BaseServices {
         Cache::add('site-map', $siteMap, 120);
         return $siteMap;
     }
-
+    
     /**
      * Build the Site Map
      */
@@ -27,6 +27,8 @@ class SiteMap extends BaseServices {
         $dates = array_values($postsInfo);
         sort($dates);
         $lastmod = last($dates);
+        $lastmod = strtotime($lastmod);
+        $lastmod = date("YYYY-MM-DDThh:mmTZD", $lastmod);
         $url = trim(url(), '/') . '/';
         $xml = [];
         $xml[] = '<?xml version="1.0" encoding="UTF-8"?' . '>';
@@ -38,6 +40,8 @@ class SiteMap extends BaseServices {
         $xml[] = '    <priority>0.8</priority>';
         $xml[] = '  </url>';
         foreach ($postsInfo as $slug => $lastmod) {
+            $lastmod = strtotime($lastmod);
+            $lastmod = date("YYYY-MM-DDThh:mmTZD", $lastmod);
             $xml[] = '  <url>';
             $xml[] = "    <loc>{$url}blog/$slug?sitemap=1</loc>";
             $xml[] = "    <lastmod>$lastmod</lastmod>";
@@ -46,7 +50,7 @@ class SiteMap extends BaseServices {
         $xml[] = '</urlset>';
         return join("\n", $xml);
     }
-
+    
     /**
      * Return all the posts as $url => $date
      */
