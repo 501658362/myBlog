@@ -100,6 +100,11 @@ class BlogController extends BaseController {
         Cache::tags('redis_post_cache_tag')->flush();
     }
     
+    public function destroySiteMapCache() {
+        //
+        Cache::forget('site-map');
+    }
+    
     public function siteMap(SiteMap $siteMap) {
         $map = $siteMap->getSiteMap();
         return response($map)->header('Content-type', 'text/xml');
