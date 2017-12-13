@@ -17,6 +17,13 @@
     <link rel="shortcut icon" href="{!! asset("assets/images/favicon.ico") !!}" type="image/vnd.microsoft.icon" />
     <link rel="icon" href="{!! asset("assets/images/favicon.ico") !!}" type="image/vnd.microsoft.icon" />
     @yield('styles')
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-8034354054368717",
+            enable_page_level_ads: true
+        });
+    </script>
 
   {{-- HTML5 Shim and Respond.js for IE8 support --}}
   <!--[if lt IE 9]>
