@@ -21,10 +21,10 @@ class WebhookController extends Controller {
         $v = "验证失败";
         $signature = $_SERVER['HTTP_X_HUB_SIGNATURE'];
         if ($signature) {
-            $hash = "sha1=" . hash_hmac('sha1', $request->getContent(), env('GITHUB_WEBHOOK_SECRET'));
+            $hash = "sha1=" . hash_hmac('sha1', $request->getContent(), "test123456");
             if (strcmp($signature, $hash) == 0) {
                 $v = "验证成功";
-                exec(env('GIT_UPDATE_COMMAND'), $data, $data1);
+                exec('cd /home/wwwroot/chenyanjin.tk/myBlog/ && /home/wwwroot/chenyanjin.tk/myBlog/updateGit.sh 2>&1', $data, $data1);
                 Log::info($data);
                 Log::info($data1);
             }
