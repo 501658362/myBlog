@@ -20,7 +20,17 @@ class WebhookController extends Controller {
         exec('cd /home/wwwroot/chenyanjin.tk/myBlog/ && /home/wwwroot/chenyanjin.tk/myBlog/updateGit.sh 2>&1', $data, $data1);
         Log::info($data);
         Log::info($data1);
-        $text = "执行结果<br>" . implode("<br>", $data) ."<br>github 请求<>".$requestData;
+    
+        $v = "验证失败";
+        $signature = $_SERVER['HTTP_X_HUB_SIGNATURE'];
+        if ($signature) {
+            $hash = "sha1=" . hash_hmac('sha1', $request->all(), "test123456");
+            if (strcmp($signature, $hash) == 0) {
+                $v = "验证成功";
+            }
+        }
+     
+        $text = "执行结果<br>" . implode("<br>", $data) ."<br>github 请求: $v <br>".$requestData;
         SendEmailService::send_mail($text);
         return response()->json($data);
     }
