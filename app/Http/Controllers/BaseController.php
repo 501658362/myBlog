@@ -11,7 +11,7 @@ class BaseController extends Controller {
     
     protected function view($layout, Array $data = []) {
         DB::setFetchMode(\PDO::FETCH_ASSOC);
-        $results = DB::select('  select id, tag, b.count from tags a join (select count(*) count, tag_id from post_tag_pivot group by tag_id) b on a.id = b.tag_id where a.deleted_at is null');
+        $results = DB::select('select id, tag, b.count from tags a join (select count(*) count, tag_id from post_tag_pivot group by tag_id order by tag_id desc) b on a.id = b.tag_id where a.deleted_at is null  order by b.count desc');
     
         $data['tagCount'] = $results;
         return view($layout, $data);
