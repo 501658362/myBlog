@@ -24,7 +24,7 @@ class WebhookController extends Controller {
         $v = "验证失败";
         $signature = $_SERVER['HTTP_X_HUB_SIGNATURE'];
         if ($signature) {
-            $hash = "sha1=" . hash_hmac('sha1', $request->all(), "test123456");
+            $hash = "sha1=" . hash_hmac('sha1', $request->getContent(), "test123456");
             if (strcmp($signature, $hash) == 0) {
                 $v = "验证成功";
             }
