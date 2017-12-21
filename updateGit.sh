@@ -4,4 +4,4 @@ echo $Cur_Dir
 cd /home/wwwroot/chenyanjin.tk/myBlog/
 git stash
 git pull
-git stash pop
+git stash pop >/dev/null 2>&1
