@@ -19,7 +19,7 @@
                 @include('mis.partials.errors')
                 @include('mis.partials.success')
 
-                <table id="posts-table" class="table table-striped table-bordered">
+                <table id="table" class="table table-striped table-bordered">
                     <thead>
                     <tr>
                         <th>{!! trans('language.published') !!}</th>
@@ -55,11 +55,5 @@
 @stop
 
 @section('scripts')
-    <script>
-        $(function() {
-            $("#posts-table").DataTable({
-                order: [[0, "desc"]]
-            });
-        });
-    </script>
+    @include('mis.partials.datatable')
 @stop

@@ -19,7 +19,7 @@
                 @include('mis.partials.errors')
                 @include('mis.partials.success')
 
-                <table id="tags-table" class="table table-striped table-bordered">
+                <table id="table" class="table table-striped table-bordered">
                     <thead>
                     <tr>
                         <th>{!! trans('language.tags') !!}</th>
@@ -63,10 +63,5 @@
 @stop
 
 @section('scripts')
-    <script>
-        $(function() {
-            $("#tags-table").DataTable({
-            });
-        });
-    </script>
+    @include('mis.partials.datatable')
 @stop

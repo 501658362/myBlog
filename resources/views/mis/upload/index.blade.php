@@ -32,7 +32,7 @@
                 @include('mis.partials.errors')
                 @include('mis.partials.success')
 
-                <table id="uploads-table" class="table table-striped table-bordered">
+                <table id="table" class="table table-striped table-bordered">
                     <thead>
                     <tr>
                         <th>Name</th>
@@ -130,9 +130,7 @@
             $("#modal-image-view").modal("show");
         }
 
-        // 初始化数据
-        $(function() {
-            $("#uploads-table").DataTable();
-        });
     </script>
+
+    @include('mis.partials.datatable')
 @stop
