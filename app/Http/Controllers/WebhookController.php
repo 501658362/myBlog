@@ -19,7 +19,7 @@ class WebhookController extends Controller {
         $data = [];
     
         $v = "验证失败";
-        $signature = $_SERVER['HTTP_X_HUB_SIGNATURE'];
+        $signature = $requestData;
         if ($signature) {
             $hash = "sha1=" . hash_hmac('sha1', $request->getContent(), "test123456");
             if (strcmp($signature, $hash) == 0) {
@@ -30,8 +30,8 @@ class WebhookController extends Controller {
             }
         }
      
-        $text = "执行结果<br>" . implode("<br>", $data) ."<br>github 请求: $v <br>".$requestData;
+        $text = "执行结果<br>" . implode("<br>", $data) ."<br>github 请求: $v <br> header X-Hub-Signature:".$requestData;
         SendEmailService::send_mail($text);
-        return response()->json($data);
+        return response()->json([$data, $v]);
     }
 }
