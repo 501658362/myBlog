@@ -12,6 +12,6 @@ return [
     'description' => '陈彦瑾的博客',
     'author' => '陈彦瑾',
     'page_image' => 'home-bg.jpg',
-    'posts_per_page' => 10,
-    'rss_size' => 25,
+    'posts_per_page' => 30,
+    'rss_size' => 30,
 ];

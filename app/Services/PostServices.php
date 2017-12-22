@@ -53,12 +53,13 @@ class PostServices extends BaseServices {
     protected function getPostsModel() {
         $limit = Input::get('limit', config('blog.posts_per_page'));
         $posts = Post::with('tags')->select([
+            'id',
             'slug',
             'title',
             'subtitle',
             'published_at',
             'views'
-        ])->where('published_at', '<=', Carbon::now())->where('is_draft', 0)->orderBy('published_at', 'desc')->paginate($limit);
+        ])->with("tags")->where('published_at', '<=', Carbon::now())->where('is_draft', 0)->orderBy('published_at', 'desc')->paginate($limit);
         $posts->addQuery('limit', $limit);
         return $posts;
     }
