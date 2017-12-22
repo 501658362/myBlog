@@ -39,9 +39,9 @@
                         @endif
 
                         <!-- UYAN COUNT BEGIN -->
-                            <a class="pull-right"
-                               style="    color: #808080;    font-size: 18px;    font-style: italic;    margin-top: 0;"
-                               href="{!! url("/blog/$post->slug") !!}" id="uyan_count_unit" du=www.chenyanjin.top" su="{!! $post->slug !!}">评论(0)</a>
+                            {{--<a class="pull-right"--}}
+                               {{--style="    color: #808080;    font-size: 18px;    font-style: italic;    margin-top: 0;"--}}
+                               {{--href="{!! url("/blog/$post->slug") !!}" id="uyan_count_unit" du=www.chenyanjin.top" su="{!! $post->slug !!}">评论(0)</a>--}}
                             <!-- UYAN COUNT END -->
                             <font style="margin-right: 10px"  class="pull-right">阅读({!! $post->views !!})</font>
                         </p>
