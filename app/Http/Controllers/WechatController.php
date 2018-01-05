@@ -44,8 +44,11 @@ class WechatController extends Controller {
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create(Request $request) {
         //
+        Log::info("-------微信请求----");
+        Log::info($request->all());
+        dd($request->all());
     }
     
     /**
