@@ -21,12 +21,13 @@ class WechatController extends Controller {
         $signature = $request->get("signature");
         $timestamp = $request->get("timestamp");
         $nonce = $request->get("nonce");
+        $echostr = $request->get("echostr");
         $tmpArr = array ("501658362", $timestamp, $nonce);
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode($tmpArr);
         $tmpStr = sha1($tmpStr);
         if ($signature == $tmpStr) {
-            return response()->json("成功");
+            return response()->json($echostr);
         } else {
             return response("fail", 500);
         }
