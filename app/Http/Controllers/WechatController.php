@@ -32,11 +32,12 @@ class WechatController extends Controller {
         Log::info($tmpStr);
         Log::info($echostr);
         if ($signature == $tmpStr) {
-            return response()->json($echostr);
+            echo $echostr;
+//            return response()->json($echostr);
         } else {
             return response("fail", 500);
         }
-        return view("contact-us");
+//        return view("contact-us");
     }
     
     /**
