@@ -29,6 +29,8 @@ class WechatController extends Controller {
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode($tmpArr);
         $tmpStr = sha1($tmpStr);
+        Log::info($tmpStr);
+        Log::info($echostr);
         if ($signature == $tmpStr) {
             return response()->json($echostr);
         } else {
