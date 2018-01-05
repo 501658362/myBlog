@@ -71,4 +71,5 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 // 联系我们
 Route::resource('contact','ContactController',['only' => ['index','store']]);
+Route::any('wx','WechatController@index');
 
