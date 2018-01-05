@@ -28,7 +28,7 @@ class WechatController extends Controller {
         if ($signature == $tmpStr) {
             return response()->json("成功");
         } else {
-            return response("fail", 500)->json("失败");
+            return response("fail", 500);
         }
         return view("contact-us");
     }
