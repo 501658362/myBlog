@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class WechatController extends Controller {
     
@@ -18,6 +19,8 @@ class WechatController extends Controller {
      */
     public function index(Request $request) {
         //
+        Log::info("-------微信请求----");
+        Log::info($request->all());
         $signature = $request->get("signature");
         $timestamp = $request->get("timestamp");
         $nonce = $request->get("nonce");
