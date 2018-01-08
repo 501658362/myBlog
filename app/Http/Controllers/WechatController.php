@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 
 class WechatController extends Controller {
     
@@ -48,6 +49,13 @@ class WechatController extends Controller {
         //
         Log::info("-------微信请求----");
         Log::info($request->all());
+        if($request->get("code")){
+            dd($request->all());
+        }else{
+            return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx/login")).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
+        }
+        
+    
         dd($request->all());
     }
     
