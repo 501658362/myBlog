@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 class WechatController extends Controller {
-    
+    protected $appId="wx8a1533aceba5ecf7";
+    protected $secret="3a819b31ac0a145f6e6bcffba1c7289c";
     /**
      * Display a listing of the resource.
      *  联系我们
@@ -36,7 +37,18 @@ class WechatController extends Controller {
             echo $echostr;
 //            return response()->json($echostr);
         } else {
-            return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8a1533aceba5ecf7&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=xczxcasdasd#wechat_redirect');
+            // 回调成功 有code
+            if($request->get("code")){
+                $client = new \GuzzleHttp\Client();
+                // 使用code 获取 token 和 openid
+                $tokenData = $client->request('GET', 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$this->appId.'&secret='.$this->secret.'&code='.$request->get("code").'&grant_type=authorization_code');
+                $tokenData = json_decode($tokenData->getBody()->getContents());
+                // 使用 token 和 openid 获取用户信息
+                $userData = $client->request('GET', "https://api.weixin.qq.com/sns/userinfo?access_token=$tokenData->access_token&openid=$tokenData->openid&lang=zh_CN");
+                $userData = json_decode($userData->getBody()->getContents());
+                dd($userData);
+            }
+            return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$this->appId.'&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=xczxcasdasd#wechat_redirect');
     
             return response("fail", 500);
         }
