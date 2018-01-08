@@ -26,7 +26,7 @@ class WechatController extends Controller {
         $timestamp = $request->get("timestamp");
         $nonce = $request->get("nonce");
         $echostr = $request->get("echostr");
-        $tmpArr = array ("501658362", $timestamp, $nonce);
+        $tmpArr = array ("kAptQRDXmDSciLbJeBh5k0iR6AmUiirk", $timestamp, $nonce);
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode($tmpArr);
         $tmpStr = sha1($tmpStr);
@@ -36,7 +36,7 @@ class WechatController extends Controller {
             echo $echostr;
 //            return response()->json($echostr);
         } else {
-            return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=xczxcasdasd#wechat_redirect');
+            return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8a1533aceba5ecf7&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=xczxcasdasd#wechat_redirect');
     
             return response("fail", 500);
         }
