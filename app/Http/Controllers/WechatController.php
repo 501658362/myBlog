@@ -52,6 +52,7 @@ class WechatController extends Controller {
         if($request->get("code")){
             dd($request->all());
         }else{
+            Log::info('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx/login")).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
             return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx/login")).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
         }
         
