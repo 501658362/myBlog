@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
@@ -43,9 +44,11 @@ class WechatController extends Controller {
                 // 使用code 获取 token 和 openid
                 $tokenData = $client->request('GET', 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$this->appId.'&secret='.$this->secret.'&code='.$request->get("code").'&grant_type=authorization_code');
                 $tokenData = json_decode($tokenData->getBody()->getContents());
+                Log::info(var_export($tokenData, true));
                 // 使用 token 和 openid 获取用户信息
                 $userData = $client->request('GET', "https://api.weixin.qq.com/sns/userinfo?access_token=$tokenData->access_token&openid=$tokenData->openid&lang=zh_CN");
                 $userData = json_decode($userData->getBody()->getContents());
+                Log::info(var_export($userData, true));
                 dd($userData);
             }
             return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$this->appId.'&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=xczxcasdasd#wechat_redirect');
@@ -61,17 +64,24 @@ class WechatController extends Controller {
      */
     public function create(Request $request) {
         //
-        Log::info("-------微信请求- login---");
-        Log::info($request->all());
-        if($request->get("code")){
-            dd($request->all());
-        }else{
-            Log::info('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
-            return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=xczxcasdasd#wechat_redirect');
-        }
-        
-    
-        dd($request->all());
+        dd($request->cookie());
+        $response = new Response();
+        //第一个参数是cookie名，第二个参数是cookie值，第三个参数是有效期（分钟）
+        $response->withCookie(cookie('website','LaravelAcademy.org',1));
+        return $response;
+        //如果想要cookie长期有效使用如下方法
+        //$response->withCookie(cookie()->forever('name', 'value'));
+//        Log::info("-------微信请求- login---");
+//        Log::info($request->all());
+//        if($request->get("code")){
+//            dd($request->all());
+//        }else{
+//            Log::info('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
+//            return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=xczxcasdasd#wechat_redirect');
+//        }
+//
+//
+//        dd($request->all());
     }
     
     /**
