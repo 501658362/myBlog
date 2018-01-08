@@ -36,6 +36,8 @@ class WechatController extends Controller {
             echo $echostr;
 //            return response()->json($echostr);
         } else {
+            return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=xczxcasdasd#wechat_redirect');
+    
             return response("fail", 500);
         }
 //        return view("contact-us");
@@ -47,13 +49,13 @@ class WechatController extends Controller {
      */
     public function create(Request $request) {
         //
-        Log::info("-------微信请求----");
+        Log::info("-------微信请求- login---");
         Log::info($request->all());
         if($request->get("code")){
             dd($request->all());
         }else{
             Log::info('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
-            return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
+            return Redirect::to('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxff330b9c7987ddf4&redirect_uri='.urlencode(url("wx")).'&response_type=code&scope=snsapi_userinfo&state=xczxcasdasd#wechat_redirect');
         }
         
     
