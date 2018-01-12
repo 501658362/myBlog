@@ -15,9 +15,49 @@ use Illuminate\Support\Facades\Redirect;
 class WechatController extends Controller {
     protected $appId="wx8a1533aceba5ecf7";
     protected $secret="3a819b31ac0a145f6e6bcffba1c7289c";
+   
+    public function serve(Request $request) {
+        Log::info('request arrived.'); # 注意：Log 为 Laravel 组件，所以它记的日志去 Laravel 日志看，而不是 EasyWeChat 日志
+    
+        $wechat = app('wechat');
+        $wechat->server->setMessageHandler(function($message){
+            switch ($message->MsgType) {
+                case 'event':
+                    return '收到事件消息';
+                    break;
+                case 'text':
+                    if ($message->Content == "薛征" || $message->Content == "猫" || $message->Content == "老猫") {
+                        return "老猫是sha diao  哈哈哈哈哈";
+                    }
+                    return $message->Content;
+                    break;
+                case 'image':
+                    break;
+                case 'voice':
+                    return '收到语音消息';
+                    break;
+                case 'video':
+                    return '收到视频消息';
+                    break;
+                case 'location':
+                    return '收到坐标消息';
+                    break;
+                case 'link':
+                    return '收到链接消息';
+                    break;
+                // ... 其它消息
+                default:
+                    return '收到其它消息';
+                    break;
+            }
+        });
+    
+        Log::info('return response.');
+    
+        return $wechat->server->serve();
+    }
     /**
      * Display a listing of the resource.
-     *  联系我们
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {

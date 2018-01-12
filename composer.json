@@ -13,7 +13,8 @@
         "michelf/php-smartypants": "1.6.x-dev",
         "dflydev/apache-mime-types": "^1.0",
         "doctrine/dbal": "^2.5",
-        "suin/php-rss-writer": "^1.5"
+        "suin/php-rss-writer": "^1.5",
+        "overtrue/laravel-wechat": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -48,8 +49,6 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan ide-helper:generate",
-            "php artisan ide-helper:meta",
             "php artisan optimize"
         ],
         "post-root-package-install": [
