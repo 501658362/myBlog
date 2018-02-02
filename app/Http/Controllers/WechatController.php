@@ -21,35 +21,36 @@ class WechatController extends Controller {
     
         $wechat = app('wechat');
         $wechat->server->setMessageHandler(function($message){
-            switch ($message->MsgType) {
-                case 'event':
-                    return '收到事件消息';
-                    break;
-                case 'text':
-                    if ($message->Content == "薛征" || $message->Content == "猫" || $message->Content == "老猫") {
-                        return "老猫是sha diao  哈哈哈哈哈";
-                    }
-                    return $message->Content;
-                    break;
-                case 'image':
-                    break;
-                case 'voice':
-                    return '收到语音消息';
-                    break;
-                case 'video':
-                    return '收到视频消息';
-                    break;
-                case 'location':
-                    return '收到坐标消息';
-                    break;
-                case 'link':
-                    return '收到链接消息';
-                    break;
-                // ... 其它消息
-                default:
-                    return '收到其它消息';
-                    break;
-            }
+            return "来了您呐，稍安勿躁，片刻后悠比旅行将推出全套服务";
+//            switch ($message->MsgType) {
+//                case 'event':
+//                    return '收到事件消息';
+//                    break;
+//                case 'text':
+//                    if ($message->Content == "薛征" || $message->Content == "猫" || $message->Content == "老猫") {
+//                        return "老猫是sha diao  哈哈哈哈哈";
+//                    }
+//                    return $message->Content;
+//                    break;
+//                case 'image':
+//                    break;
+//                case 'voice':
+//                    return '收到语音消息';
+//                    break;
+//                case 'video':
+//                    return '收到视频消息';
+//                    break;
+//                case 'location':
+//                    return '收到坐标消息';
+//                    break;
+//                case 'link':
+//                    return '收到链接消息';
+//                    break;
+//                // ... 其它消息
+//                default:
+//                    return '收到其它消息';
+//                    break;
+//            }
         });
     
         Log::info('return response.');
