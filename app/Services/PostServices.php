@@ -29,6 +29,7 @@ class PostServices extends BaseServices {
         if (!Auth::check() && !$isSiteMap) {
             // The user is logged in...
             $post->views = $post->views + 1;
+            $post->timestamps=false;
             $post->save();
         }
         return $post;
