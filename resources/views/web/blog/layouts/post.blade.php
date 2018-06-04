@@ -20,8 +20,10 @@
                 @endif
 
                 <font style="margin-right: 10px"  class="pull-right">  &nbsp;  阅读({!! $post->views !!})</font>
+                @if ($post->published_at != $post->updated_at)
+                    <span class="pull-right"> Last updated on {{ $post->updated_at->format('Y-m-d H:i:s') }}</span>
+                @endif
 
-                            <span class="pull-right"> Last updated on {{ $post->updated_at->format('Y-m-d H:i:s') }}</span>
 
             </span>
                     </div>
