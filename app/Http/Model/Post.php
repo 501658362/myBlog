@@ -24,6 +24,7 @@ class Post extends Model {
             'page_image',
             'meta_description',
             'layout',
+            'top_level',
             'is_draft',
             'published_at',
         ];

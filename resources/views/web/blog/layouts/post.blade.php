@@ -13,11 +13,16 @@
                         <h1>{{ $post->title }}</h1>
                         <h2 class="subheading">{{ $post->subtitle }}</h2>
             <span class="meta">
-              Posted on {{ $post->published_at->format('Y-m-d') }}
+              Posted on {{ $post->published_at->format('Y-m-d H:i:s') }}
                 @if ($post->tags->count())
                     in
                     {!! join(', ', $post->tagLinks()) !!}
                 @endif
+
+                <font style="margin-right: 10px"  class="pull-right">  &nbsp;  阅读({!! $post->views !!})</font>
+
+                            <span class="pull-right">   Updated on {{ $post->updated_at->format('Y-m-d H:i:s') }}</span>
+
             </span>
                     </div>
                 </div>

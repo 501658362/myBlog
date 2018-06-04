@@ -52,6 +52,7 @@ class PostCreateRequest extends Request
             'meta_description' => $this->meta_description,
             'is_draft' => (bool)$this->is_draft,
             'published_at' => $published_at,
+            'top_level' => $this->top_level,
             'layout' => $this->layout,
         ];
     }

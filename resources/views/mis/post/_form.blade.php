@@ -112,6 +112,15 @@
                 <input type="text" class="form-control" name="layout" id="layout" value="{{ $layout }}">
             </div>
         </div>
+
+        <div class="form-group">
+            <label for="top_level" class="col-md-3 control-label">
+                置顶等级
+            </label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" name="top_level" id="top_level" value="{{ $top_level }}">
+            </div>
+        </div>
         <div class="form-group">
             <label for="meta_description" class="col-md-3 control-label">
 

@@ -58,8 +58,10 @@ class PostServices extends BaseServices {
             'title',
             'subtitle',
             'published_at',
+            'updated_at',
+            'top_level',
             'views'
-        ])->with("tags")->where('published_at', '<=', Carbon::now())->where('is_draft', 0)->orderBy('published_at', 'desc')->paginate($limit);
+        ])->with("tags")->where('published_at', '<=', Carbon::now())->where('is_draft', 0)->orderBy('top_level', 'desc')->orderBy('published_at', 'desc')->paginate($limit);
         $posts->addQuery('limit', $limit);
         return $posts;
     }
