@@ -31,6 +31,7 @@ class PostServices extends BaseServices {
             $post->views = $post->views + 1;
             $post->timestamps=false;
             $post->save();
+            $post->timestamps=true;
         }
         return $post;
     }
