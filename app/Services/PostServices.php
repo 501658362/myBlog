@@ -77,7 +77,7 @@ class PostServices extends BaseServices {
         $limit = Input::get('limit', config('blog.posts_per_page'));
         $posts = Post::where('published_at', '<=', Carbon::now())->whereHas('tags', function ($q) use ($tag) {
             $q->where('tag', '=', $tag->tag);
-        })->where('is_draft', 0)->orderBy('published_at', (bool)$tag->reverse_direction ? 'asc' :
+        })->where('is_draft', 0)->orderBy('top_level', 'desc')->orderBy('published_at', (bool)$tag->reverse_direction ? 'asc' :
             'desc')->paginate($limit);
         $posts->addQuery('tag', $tag->tag);
         $posts->addQuery('limit', $limit);
