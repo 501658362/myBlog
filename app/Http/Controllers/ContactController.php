@@ -107,6 +107,7 @@ class ContactController extends Controller {
                 foreach ($data as $k => $v) {
                     $content .= $k . ":" . $v . '<br>';
                 }
+                $content .=  "ip:" . $ip . '<br>';
                 SendEmailService::send_mail($content, "有人给你留言啦！");
                 return back()->with(["Success" => "信息已发送，感谢您的来信！"]);
             } catch (\Exception $e) {
