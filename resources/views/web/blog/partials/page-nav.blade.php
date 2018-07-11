@@ -11,6 +11,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/blog">{{ config('blog.name') }}</a>
+            <a class="navbar-brand" target="_blank" href="{!! url('contact') !!}">联系作者</a>
         </div>
 
         {{-- Collect the nav links, forms, and other content for toggling --}}
