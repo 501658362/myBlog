@@ -14,11 +14,10 @@ use Illuminate\Support\Facades\Log;
 class WebhookController extends Controller {
     
     public function gitWebhook(Request $request) {
-        try{
+        try {
             $requestData = $request->header("X-Hub-Signature");
             Log::info("git push 啦  该更新代码啦~");
             $data = [];
-    
             $v = "验证失败";
             $signature = $requestData;
             if ($signature) {
@@ -30,12 +29,11 @@ class WebhookController extends Controller {
                     Log::info($data1);
                 }
             }
-    
-            $text = "执行结果<br>github 请求: $v <br> header X-Hub-Signature:".$requestData."<br>" . implode("<br>", $data) ."<br>";
+            $text = "执行结果<br>github 请求: $v <br> header X-Hub-Signature:" . $requestData . "<br>" . implode("<br>", $data) . "<br>";
             SendEmailService::send_mail($text);
             return response()->json([$data, $v]);
-        }catch (\Exception $ex){
-            SendEmailService::send_mail($ex->getTraceAsString(), "git webhook 接发，回调发生异常， 发送异常！！！！");
+        } catch (\Exception $ex) {
+            SendEmailService::send_mail('Hi, 以下是您的邮件内容 <br>  ' . $ex->getTraceAsString(), "git webhook 接发，回调发生异常， 发送异常！！！！");
             return response("fail", 500)->json();
         }
     }

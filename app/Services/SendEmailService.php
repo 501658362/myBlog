@@ -20,7 +20,7 @@ class SendEmailService {
             'fromName'    => '陈彦瑾的博客',
             'to'          => $to,# 收件人地址, 用正确邮件地址替代, 多个地址用';'分隔
             'subject'     => $subject,
-            'html'        => 'Hi, 以下是您的邮件内容 <br>  ' .  $data,
+            'html'        => $data,
             'respEmailId' => 'true'
         );
         $data = http_build_query($param);

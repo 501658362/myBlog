@@ -363,6 +363,9 @@
                 email: "邮箱格式不对",
                 required: "请输入邮箱"
             },
+            code: {
+                required: "请输入验证码"
+            },
             password: {
                 required: "请输入密码"
             },

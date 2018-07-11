@@ -23,7 +23,9 @@
                                                                    placeholder="{!! trans('language.email_placeholder') !!}"/>
 															<i class="icon-envelope"></i>
 														</span>
+
                         </label>
+
 
                         <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -54,6 +56,20 @@
 															<i class="fa fa-file-text"></i>
 														</span>
                         </label>
+
+
+                        <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" class="form-control" name="code"
+                                                                   value="" id="code"
+                                                                   placeholder="请输入您收到的验证码"/>
+															<i class="icon-envelope"></i>
+														</span>
+                            <button type="submit" name="submitType" value="1" class="width-35 pull-right btn btn-sm btn-success">
+                                获取验证码
+                            </button>
+                        </label>
+
                         @if (count($errors) > 0)
                             <div class="red error-info">
                                 <ul class="list-unstyled spaced">
@@ -90,5 +106,9 @@
         </div>
         <!-- /widget-body -->
     </div><!-- /contact -->
+    <script>
+
+
+    </script>
 
 @stop
