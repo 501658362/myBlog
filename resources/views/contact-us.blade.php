@@ -87,7 +87,7 @@
                             </div>
                         @endif
                         <div class="clearfix">
-                            <button type="submit" class="width-35 pull-right btn btn-sm btn-danger">
+                            <button type="submit" class="width-100 pull-right btn btn-sm btn-danger">
                                 <i class="icon-lightbulb"></i>
                                 {!! trans('language.send') !!}
                             </button>
