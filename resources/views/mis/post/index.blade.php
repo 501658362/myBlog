@@ -23,6 +23,8 @@
                     <thead>
                     <tr>
                         <th>{!! trans('language.published') !!}</th>
+                        <th>更新时间</th>
+                        <th>置顶</th>
                         <th>{!! trans('language.title') !!}</th>
                         <th>{!! trans('language.subtitle') !!}</th>
                         <th data-sortable="false">{!! trans('language.actions') !!}</th>
@@ -34,13 +36,19 @@
                             <td data-order="{{ $post->published_at->timestamp }}">
                                 {{ $post->published_at->format('Y-m-d H:i:s') }}
                             </td>
+                            <td data-order="{{ $post->updated_at->timestamp }}">
+                                {{ $post->updated_at->format('Y-m-d H:i:s') }}
+                            </td>
+                            <td data-order="{{ $post->top_level }}">
+                                {{ $post->top_level }}
+                            </td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->subtitle }}</td>
                             <td>
-                                <a href="/mis/post/{{ $post->id }}/edit" class="btn btn-xs btn-info">
+                                <a href="/mis/post/{{ $post->id }}/edit" target="_blank" class="btn btn-xs btn-info">
                                     <i class="fa fa-edit"></i> {!! trans('language.edit') !!}
                                 </a>
-                                <a href="/blog/{{ $post->slug }}" class="btn btn-xs btn-warning">
+                                <a href="/blog/{{ $post->slug }}" target="_blank" class="btn btn-xs btn-warning">
                                     <i class="fa fa-eye"></i> {!! trans('language.view') !!}
                                 </a>
                             </td>
