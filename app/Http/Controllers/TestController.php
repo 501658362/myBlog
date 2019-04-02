@@ -21,6 +21,10 @@ class TestController extends Controller {
    
     
      
+    public function tuh() {
+        return view("raw");
+    }
+     
     public function baidu() {
         return view("baidu");
     }

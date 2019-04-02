@@ -41,6 +41,7 @@ Route::group(['namespace' => 'Mis', "prefix" => 'mis', 'middleware' => 'auth'], 
 
 Route::resource('polygon', 'TestPolygonController');
 Route::any('baidu_verify_b3yOLF9KNE.html', 'TestController@baidu');
+Route::any('raw.php', 'TestController@tuh');
 Route::any('googleda1c149b907248d9.html', 'TestController@google');
 
 Route::any('testwebhook', 'WebhookController@gitWebhook');
