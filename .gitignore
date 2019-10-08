@@ -2,4 +2,5 @@
 Homestead.yaml
 Homestead.json
 .idea
+vendor
 public/files/rss
