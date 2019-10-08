@@ -49,9 +49,9 @@ class ContactController extends Controller {
        
         if ($data[ 'submitType' ] == 1) {
             try {
-                if (Cache::has($key)) {
-                    return redirect()->back()->withInput($request->all())->withErrors(['email' => "获取验证码失败！一天只能发一次"]);
-                }
+//                if (Cache::has($key)) {
+//                    return redirect()->back()->withInput($request->all())->withErrors(['email' => "获取验证码失败！一天只能发一次"]);
+//                }
                 //range 是将1到42 列成一个数组
                 $numbers = range(1, 10);
                 //shuffle 将数组顺序随即打乱
@@ -79,17 +79,17 @@ class ContactController extends Controller {
                 if(empty($data['code'])){
                     return redirect()->back()->withInput($request->all())->withErrors(['email' =>  "验证码错误"]);
                 }
-                if (!Cache::has($key)) {
-                    return redirect()->back()->withInput($request->all())->withErrors(['email' => "验证码已失效，请重新获取！"]);
-                }
+//                if (!Cache::has($key)) {
+//                    return redirect()->back()->withInput($request->all())->withErrors(['email' => "验证码已失效，请重新获取！"]);
+//                }
                 $code = Cache::get($key);
     
-                if (Cache::has($codeKey)) {
-                    $vTimes = Cache::get($codeKey);
-                    if($vTimes >= 3){
-                        return redirect()->back()->withInput($request->all())->withErrors(['email' =>  "验证重试太多，请24小时后重试！谢谢！"]);
-                    }
-                }
+//                if (Cache::has($codeKey)) {
+//                    $vTimes = Cache::get($codeKey);
+//                    if($vTimes >= 3){
+//                        return redirect()->back()->withInput($request->all())->withErrors(['email' =>  "验证重试太多，请24小时后重试！谢谢！"]);
+//                    }
+//                }
                 if($code != $data['code']){
                     if (!Cache::has($codeKey)) {
                         Cache::put($codeKey, 1, 60 * 24);
