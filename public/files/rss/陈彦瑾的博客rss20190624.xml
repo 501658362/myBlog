@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <atom:link href="http://yanpanpan.net/rss" rel="self" type="application/rss+xml" />
+    <title>陈彦瑾的博客</title>
+    <link>http://yanpanpan.net</link>
+    <description>陈彦瑾的博客</description>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 陈彦瑾</copyright>
+    <lastBuildDate>Mon, 24 Jun 2019 10:25:12 +0800</lastBuildDate>
+    <item>
+      <title>Mysqldiff遇到的坑</title>
+      <link>http://yanpanpan.net/blog/mysqldiff</link>
+      <description>绝世大坑， mysqldiff 不能使用有限制的账号</description>
+      <guid>http://yanpanpan.net/blog/mysqldiff</guid>
+      <pubDate>Fri, 24 May 2019 12:30:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>Redis批量删除Key</title>
+      <link>http://yanpanpan.net/blog/rediskey</link>
+      <description>有密码和无密码</description>
+      <guid>http://yanpanpan.net/blog/rediskey</guid>
+      <pubDate>Wed, 16 Jan 2019 16:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>IDEA控制台中文乱码</title>
+      <link>http://yanpanpan.net/blog/idea</link>
+      <description>IDEA控制台中文乱码两种解决方法</description>
+      <guid>http://yanpanpan.net/blog/idea</guid>
+      <pubDate>Tue, 07 Aug 2018 19:14:50 +0800</pubDate>
+    </item>
+    <item>
+      <title>如何使用git 生成patch 和打入patch</title>
+      <link>http://yanpanpan.net/blog/git-patch-patch</link>
+      <description>merge出错最好的解决方法，</description>
+      <guid>http://yanpanpan.net/blog/git-patch-patch</guid>
+      <pubDate>Tue, 05 Jun 2018 10:30:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>Mysql通过select进行更新</title>
+      <link>http://yanpanpan.net/blog/mysqlselect</link>
+      <description>又一次忘了，写博客里吧</description>
+      <guid>http://yanpanpan.net/blog/mysqlselect</guid>
+      <pubDate>Wed, 07 Mar 2018 17:30:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>Mysql在select里使用if语句</title>
+      <link>http://yanpanpan.net/blog/mysqlselectif</link>
+      <description>sum() 、count() 类型的都可以使用</description>
+      <guid>http://yanpanpan.net/blog/mysqlselectif</guid>
+      <pubDate>Thu, 08 Feb 2018 11:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>Java如果小数点后面是0不显示小数点</title>
+      <link>http://yanpanpan.net/blog/java0</link>
+      <description>Java如果小数点后面是0不显示小数点</description>
+      <guid>http://yanpanpan.net/blog/java0</guid>
+      <pubDate>Fri, 26 Jan 2018 18:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>Java学习相关书籍电子书</title>
+      <link>http://yanpanpan.net/blog/java</link>
+      <description>不能太松懈，多学习</description>
+      <guid>http://yanpanpan.net/blog/java</guid>
+      <pubDate>Thu, 25 Jan 2018 12:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>Laravel 使用 Github webhook 回调自动部署，回调验证方法</title>
+      <link>http://yanpanpan.net/blog/laravel-github-webhook</link>
+      <description>使用 Github 提供的钩子，当代码 push 到远程后回调到服务器实现自动部署，并且实现加密验证</description>
+      <guid>http://yanpanpan.net/blog/laravel-github-webhook</guid>
+      <pubDate>Thu, 21 Dec 2017 13:25:42 +0800</pubDate>
+    </item>
+    <item>
+      <title>修改 hosts 不生效，但是 ping 出来的 ip 却是对的！</title>
+      <link>http://yanpanpan.net/blog/hosts-ping-ip</link>
+      <description>修改 hosts 不生效，但是 ping 出来的 ip 却是对的！找了半天，原来是代理软件的问题~</description>
+      <guid>http://yanpanpan.net/blog/hosts-ping-ip</guid>
+      <pubDate>Tue, 12 Dec 2017 16:45:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>正则表达式批量替换注释</title>
+      <link>http://yanpanpan.net/blog/5</link>
+      <description>正则表达式批量替换注释，通过 Idea 自带的正则替换修改 实体属性的注释</description>
+      <guid>http://yanpanpan.net/blog/5</guid>
+      <pubDate>Fri, 01 Dec 2017 16:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>Mac 下自动启动和关闭程序的脚本</title>
+      <link>http://yanpanpan.net/blog/mac</link>
+      <description>通过 Vagex 的 firefox 插件刷积分，遇到一个问题，插件假死，需要重启火狐，不能人工一直看，so 写了一个脚本，加入到的 crontab 让系统自动监控</description>
+      <guid>http://yanpanpan.net/blog/mac</guid>
+      <pubDate>Wed, 29 Nov 2017 14:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>管理 ssr</title>
+      <link>http://yanpanpan.net/blog/ssr-1</link>
+      <description>ssr 常用的 命令 启动：/etc/init.d/shadowsocks start   停止：/etc/init.d/shadowsocks stop  重启：/etc/init.d/shadowsocks restart   状态：/etc/init.d/shadowsocks status </description>
+      <guid>http://yanpanpan.net/blog/ssr-1</guid>
+      <pubDate>Tue, 28 Nov 2017 18:12:34 +0800</pubDate>
+    </item>
+    <item>
+      <title>Elasticsearch 经纬度坐标格式</title>
+      <link>http://yanpanpan.net/blog/elasticsearch</link>
+      <description>Elasticsearch 经纬度坐标格式，这下再也不怕了忘记了！</description>
+      <guid>http://yanpanpan.net/blog/elasticsearch</guid>
+      <pubDate>Thu, 16 Nov 2017 10:30:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>Host key verification failed</title>
+      <link>http://yanpanpan.net/blog/host-key-verification-failed</link>
+      <description>在应用内执行脚本 遇到 Host key verification failed</description>
+      <guid>http://yanpanpan.net/blog/host-key-verification-failed</guid>
+      <pubDate>Tue, 14 Nov 2017 14:15:15 +0800</pubDate>
+    </item>
+    <item>
+      <title>[已失效！！]免费科学上网！SSR 使用教程</title>
+      <link>http://yanpanpan.net/blog/ssr</link>
+      <description>墙太高了，一年一度的六一儿童节还是太厉害了</description>
+      <guid>http://yanpanpan.net/blog/ssr</guid>
+      <pubDate>Wed, 08 Nov 2017 17:08:13 +0800</pubDate>
+    </item>
+    <item>
+      <title>open_basedir restriction in effect 错误解决方案</title>
+      <link>http://yanpanpan.net/blog/lnmp-unknown-open-basedir-restriction-in-effect</link>
+      <description>Lnmp部署时发生 Unknown: open_basedir restriction in effect 错误解决方案</description>
+      <guid>http://yanpanpan.net/blog/lnmp-unknown-open-basedir-restriction-in-effect</guid>
+      <pubDate>Tue, 07 Nov 2017 17:25:34 +0800</pubDate>
+    </item>
+    <item>
+      <title>非.gitignore 不追踪在版本库里的文件</title>
+      <link>http://yanpanpan.net/blog/git-gitignore</link>
+      <description>本地 GIT 不追踪 本地某文件的解决方案</description>
+      <guid>http://yanpanpan.net/blog/git-gitignore</guid>
+      <pubDate>Fri, 29 Sep 2017 11:28:11 +0800</pubDate>
+    </item>
+    <item>
+      <title>Git 撤销 merge 到 master</title>
+      <link>http://yanpanpan.net/blog/git-merge-master</link>
+      <description>Git 撤销 merge 到 master</description>
+      <guid>http://yanpanpan.net/blog/git-merge-master</guid>
+      <pubDate>Thu, 13 Jul 2017 19:51:34 +0800</pubDate>
+    </item>
+    <item>
+      <title>Mysql查看字段长度</title>
+      <link>http://yanpanpan.net/blog/mysql-1</link>
+      <description>Mysql查看字段长度</description>
+      <guid>http://yanpanpan.net/blog/mysql-1</guid>
+      <pubDate>Thu, 22 Jun 2017 15:01:24 +0800</pubDate>
+    </item>
+    <item>
+      <title>水友们点这里！！！！</title>
+      <link>http://yanpanpan.net/blog/4</link>
+      <description>不可描述的内容</description>
+      <guid>http://yanpanpan.net/blog/4</guid>
+      <pubDate>Wed, 24 May 2017 22:00:02 +0800</pubDate>
+    </item>
+    <item>
+      <title>关于stdClass 转为 数组格式</title>
+      <link>http://yanpanpan.net/blog/stdclass</link>
+      <description>数据转换</description>
+      <guid>http://yanpanpan.net/blog/stdclass</guid>
+      <pubDate>Mon, 26 Sep 2016 13:20:26 +0800</pubDate>
+    </item>
+    <item>
+      <title>上线啦，欢迎留言吐槽或建议</title>
+      <link>http://yanpanpan.net/blog/1</link>
+      <description>上线啦</description>
+      <guid>http://yanpanpan.net/blog/1</guid>
+      <pubDate>Thu, 08 Sep 2016 23:30:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>Laravel 网站</title>
+      <link>http://yanpanpan.net/blog/laravel-1</link>
+      <description>Laravel 相关的学习资源社区</description>
+      <guid>http://yanpanpan.net/blog/laravel-1</guid>
+      <pubDate>Thu, 08 Sep 2016 16:52:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>Laravel笔记</title>
+      <link>http://yanpanpan.net/blog/laravel</link>
+      <description>Laravel各种笔记</description>
+      <guid>http://yanpanpan.net/blog/laravel</guid>
+      <pubDate>Thu, 08 Sep 2016 16:50:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>Mysql技巧</title>
+      <link>http://yanpanpan.net/blog/mysql</link>
+      <description>Mysql的一些技巧</description>
+      <guid>http://yanpanpan.net/blog/mysql</guid>
+      <pubDate>Thu, 08 Sep 2016 16:48:00 +0800</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -12,11 +12,12 @@
     "jquery": "^3.2.1",
     "bootstrap": "^3.3.7",
     "font-awesome": "fontawesome#^4.7.0",
-    "datatables": "^1.10.16",
+    "datatables": "^1.10.19",
     "Plugins": "datatables-plugins#^1.10.15",
     "selectize": "^0.12.2",
     "pickadate": "^3.5.6",
     "clean-blog": "^1.0.1",
-    "datatables.net-plugins": "datatables-plugins#^1.10.16"
+    "datatables.net-plugins": "datatables-plugins#^1.10.19",
+    "fontawesome": "^5.9.0"
   }
 }
