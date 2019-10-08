@@ -1,0 +1,21 @@
+{
+  "name": "datatables.net-plugins",
+  "license": "MIT",
+  "main": [],
+  "ignore": [],
+  "dependencies": {
+    "jquery": ">=1.7.0",
+    "datatables": ">=1.10.15"
+  },
+  "homepage": "https://github.com/DataTables/Plugins",
+  "version": "1.10.19",
+  "_release": "1.10.19",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.10.19",
+    "commit": "bbd548e7a58ec037aec4330897de574120e2d82c"
+  },
+  "_source": "https://github.com/DataTables/Plugins.git",
+  "_target": "^1.10.16",
+  "_originalSource": "datatables-plugins"
+}
