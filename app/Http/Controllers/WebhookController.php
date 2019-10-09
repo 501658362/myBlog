@@ -23,7 +23,7 @@ class WebhookController extends Controller {
             if ($signature) {
                 $hash = "sha1=" . hash_hmac('sha1', $request->getContent(), "test123456");
                 if (strcmp($signature, $hash) == 0) {
-                    $v = "验证成功!!!!!!";
+                    $v = "验证成功!!!!!!!";
                     $data= "";
                     $data1= "";
                     exec('cd /home/wwwroot/chenyanjin.top/myBlog/ && /home/wwwroot/chenyanjin.top/myBlog/updateGit.sh 2>&1', $data, $data1);
