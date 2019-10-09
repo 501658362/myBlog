@@ -71,6 +71,7 @@ class ContactController extends Controller {
                 SendEmailService::send_mail($content, "陈彦瑾的博客验证码！", $data[ 'email' ]);
                 return back()->withInput($request->all())->with(["Success" => "验证码已发送至您填写的邮箱地址，请查收！"]);
             } catch (\Exception $e) {
+                \Log::info("-------------------:" . date("H:i:s", time()) . ' ' . $e);
                 $message = "发送验证码邮件失败，错误代码%s,错误信息%s";
                 return redirect()->back()->withInput($request->all())->withErrors(['email' => sprintf($message, $e->getCode(), $e->getMessage())]);
             }
