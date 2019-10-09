@@ -18,13 +18,23 @@ class TestController extends Controller {
     public function __construct() {
         //                $this->middleware('test') ;
     }
-   
     
-     
+    public function littleHeroNewEvent(Request $request) {
+        $name = $request->get("name");
+        if (strripos($name, "\\") > 0) {
+            $title = substr($name, strripos($name, "\\") + 1);
+            SendEmailService::send_mail($name, "【" . $title . "】你想要的事件刷新啦", "501658362@qq.com");
+        } else {
+            SendEmailService::send_mail($name, "【 重生 】 ". $name , "501658362@qq.com");
+        }
+       
+        return response()->json(["code" => 200]);
+    }
+    
     public function tuh() {
         return view("raw");
     }
-     
+    
     public function baidu() {
         return view("baidu");
     }

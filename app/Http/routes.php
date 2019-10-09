@@ -43,6 +43,7 @@ Route::resource('polygon', 'TestPolygonController');
 Route::any('baidu_verify_b3yOLF9KNE.html', 'TestController@baidu');
 Route::any('raw.php', 'TestController@tuh');
 Route::any('googleda1c149b907248d9.html', 'TestController@google');
+Route::any('little_hero/new_event', 'TestController@littleHeroNewEvent');
 
 Route::any('testwebhook', 'WebhookController@gitWebhook');
 Route::group(['middleware' => 'test'], function () {
