@@ -33,7 +33,7 @@ class WebhookController extends Controller {
             SendEmailService::send_mail($text);
             return response()->json([$data, $v]);
         } catch (\Exception $ex) {
-            \Log::info("-------------------:" . date("H:i:s", time()) . ' ' . $ex);
+            \Log::info("--------------------:" . date("H:i:s", time()) . ' ' . $ex);
             SendEmailService::send_mail('Hi, 以下是您的邮件内容 <br>  ' . $ex->getTraceAsString(), "git webhook 接发，回调发生异常， 发送异常！！！！");
             return response("fail", 500)->json();
         }
