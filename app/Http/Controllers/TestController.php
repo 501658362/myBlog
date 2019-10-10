@@ -23,6 +23,7 @@ class TestController extends Controller {
         $name = $request->get("name");
         if (strripos($name, "\\") > 0) {
             $title = substr($name, strripos($name, "\\") + 1);
+            $title = substr($title, 0, strripos($title, "."));
             SendEmailService::send_mail($name, "【" . $title . "】你想要的事件刷新啦", "501658362@qq.com");
         } else {
             SendEmailService::send_mail($name, "【 重生 】 ". $name , "501658362@qq.com");
