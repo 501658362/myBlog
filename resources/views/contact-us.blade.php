@@ -62,11 +62,11 @@
 														<span class="block input-icon input-icon-right">
 															<input type="text" class="form-control" name="code"
                                                                    value="" id="code"
-                                                                   placeholder="请输入您收到的验证码"/>
+                                                                   placeholder="请输入右下方的答案"/>
 															<i class="icon-envelope"></i>
 														</span>
-                            <button type="submit" name="submitType" value="1" class="width-35 pull-right btn btn-sm btn-success">
-                                获取验证码
+                            <button type="button" name="submitType" value="1" class="width-35 pull-right btn btn-sm btn-success">
+                               {!! $code !!}
                             </button>
                         </label>
 

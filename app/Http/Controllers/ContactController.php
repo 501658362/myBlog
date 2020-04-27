@@ -17,7 +17,12 @@ class ContactController extends Controller {
      */
     public function index() {
         //
-        return view("contact-us");
+        $v = random_int(1, 10);
+        $x = random_int(1, 10);
+        $ip = $this->getRealIp();
+        $key = 'contact_ip_' . $ip;
+        Cache::put($key, $v+$x, 60 * 24);
+        return view("contact-us", ["code" =>"$v+$x=?" ]);
     }
     
     /**
@@ -48,33 +53,33 @@ class ContactController extends Controller {
         $codeKey = 'contact_ip_wrong_' . $ip;
        
         if ($data[ 'submitType' ] == 1) {
-            try {
-//                if (Cache::has($key)) {
-//                    return redirect()->back()->withInput($request->all())->withErrors(['email' => "获取验证码失败！一天只能发一次"]);
-//                }
-                //range 是将1到42 列成一个数组
-                $numbers = range(1, 10);
-                //shuffle 将数组顺序随即打乱
-                shuffle($numbers);
-                //array_slice 取该数组中的某一段
-                $result = array_slice($numbers, 0, 4);
-                $result = join("", $result);
-                Cache::put($key, $result, 60 * 24);
-                $content = " 
-                            亲：您好！ <br/>
-                            
-                            您正在发布留言，请在验证码输入框输入:" . $result . "，以完成操作。 <br/>
-                            
-                            此为系统邮件，请勿回复
-                            ";
-                $request->getClientIp();
-                SendEmailService::send_mail($content, "陈彦瑾的博客验证码！", $data[ 'email' ]);
-                return back()->withInput($request->all())->with(["Success" => "验证码已发送至您填写的邮箱地址，请查收！"]);
-            } catch (\Exception $e) {
-                \Log::info("-------------------:" . date("H:i:s", time()) . ' ' . $e);
-                $message = "发送验证码邮件失败，错误代码%s,错误信息%s";
-                return redirect()->back()->withInput($request->all())->withErrors(['email' => sprintf($message, $e->getCode(), $e->getMessage())]);
-            }
+//            try {
+////                if (Cache::has($key)) {
+////                    return redirect()->back()->withInput($request->all())->withErrors(['email' => "获取验证码失败！一天只能发一次"]);
+////                }
+//                //range 是将1到42 列成一个数组
+//                $numbers = range(1, 10);
+//                //shuffle 将数组顺序随即打乱
+//                shuffle($numbers);
+//                //array_slice 取该数组中的某一段
+//                $result = array_slice($numbers, 0, 4);
+//                $result = join("", $result);
+//                Cache::put($key, $result, 60 * 24);
+//                $content = "
+//                            亲：您好！ <br/>12313是
+//
+//                            您正在发布留言，请在验证码输入框输入:" . $result . "，以完成操作。 <br/>
+//
+//                            此为系统邮件，请勿回复
+//                            ";
+//                $request->getClientIp();
+//                SendEmailService::send_mail($content, "陈彦瑾的博客验证码！", $data[ 'email' ]);
+//                return back()->withInput($request->all())->with(["Success" => "验证码已发送至您填写的邮箱地址，请查收！"]);
+//            } catch (\Exception $e) {
+//                \Log::info("-------------------:" . date("H:i:s", time()) . ' ' . $e);
+//                $message = "发送验证码邮件失败，错误代码%s,错误信息%s";
+//                return redirect()->back()->withInput($request->all())->withErrors(['email' => sprintf($message, $e->getCode(), $e->getMessage())]);
+//            }
         } else {
             try {
                 if(empty($data['code'])){
