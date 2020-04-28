@@ -17,12 +17,12 @@ class ContactController extends Controller {
      */
     public function index() {
         //
-        $v = random_int(1, 10);
-        $x = random_int(1, 10);
-        $ip = $this->getRealIp();
-        $key = 'contact_ip_' . $ip;
-        Cache::put($key, $v+$x, 60 * 24);
-        return view("contact-us", ["code" =>"$v+$x=?" ]);
+        //        $v = random_int(1, 10);
+        //        $x = random_int(1, 10);
+        //        $ip = $this->getRealIp();
+        //        $key = 'contact_ip_' . $ip;
+        //        Cache::put($key, $v+$x, 60 * 24);
+        return view("contact-us");
     }
     
     /**
@@ -46,82 +46,48 @@ class ContactController extends Controller {
      */
     public function store(Request $request) {
         //
-      
-        $data = $request->only('name', 'email', 'phone', 'message', 'code', 'submitType');
-        $ip = $this->getRealIp();
-        $key = 'contact_ip_' . $ip;
-        $codeKey = 'contact_ip_wrong_' . $ip;
-       
-        if ($data[ 'submitType' ] == 1) {
-//            try {
-////                if (Cache::has($key)) {
-////                    return redirect()->back()->withInput($request->all())->withErrors(['email' => "获取验证码失败！一天只能发一次"]);
-////                }
-//                //range 是将1到42 列成一个数组
-//                $numbers = range(1, 10);
-//                //shuffle 将数组顺序随即打乱
-//                shuffle($numbers);
-//                //array_slice 取该数组中的某一段
-//                $result = array_slice($numbers, 0, 4);
-//                $result = join("", $result);
-//                Cache::put($key, $result, 60 * 24);
-//                $content = "
-//                            亲：您好！ <br/>12313是
-//
-//                            您正在发布留言，请在验证码输入框输入:" . $result . "，以完成操作。 <br/>
-//
-//                            此为系统邮件，请勿回复
-//                            ";
-//                $request->getClientIp();
-//                SendEmailService::send_mail($content, "陈彦瑾的博客验证码！", $data[ 'email' ]);
-//                return back()->withInput($request->all())->with(["Success" => "验证码已发送至您填写的邮箱地址，请查收！"]);
-//            } catch (\Exception $e) {
-//                \Log::info("-------------------:" . date("H:i:s", time()) . ' ' . $e);
-//                $message = "发送验证码邮件失败，错误代码%s,错误信息%s";
-//                return redirect()->back()->withInput($request->all())->withErrors(['email' => sprintf($message, $e->getCode(), $e->getMessage())]);
-//            }
-        } else {
-            try {
-                if(empty($data['code'])){
-                    return redirect()->back()->withInput($request->all())->withErrors(['email' =>  "验证码错误"]);
-                }
-//                if (!Cache::has($key)) {
-//                    return redirect()->back()->withInput($request->all())->withErrors(['email' => "验证码已失效，请重新获取！"]);
-//                }
-                $code = Cache::get($key);
-    
-//                if (Cache::has($codeKey)) {
-//                    $vTimes = Cache::get($codeKey);
-//                    if($vTimes >= 3){
-//                        return redirect()->back()->withInput($request->all())->withErrors(['email' =>  "验证重试太多，请24小时后重试！谢谢！"]);
-//                    }
-//                }
-                if($code != $data['code']){
-                    if (!Cache::has($codeKey)) {
-                        Cache::put($codeKey, 1, 60 * 24);
-                    }else{
-                        $vTimes = Cache::get($codeKey);
-    
-                        Cache::put($codeKey, 1 + $vTimes, 60 * 24);
-                    }
-                    return redirect()->back()->withInput($request->all())->withErrors(['email' =>  "验证码错误"]);
-                }
-             
-                $content = 'Hi, 以下是您的邮件内容 <br>  ';
-                unset($data['code']);
-                unset($data['submitType']);
-                foreach ($data as $k => $v) {
-                    $content .= $k . ":" . $v . '<br>';
-                }
-                $content .=  "ip:" . $ip . '<br>';
-                SendEmailService::send_mail($content, "有人给你留言啦！");
-                return back()->with(["Success" => "信息已发送，感谢您的来信！"]);
-            } catch (\Exception $e) {
-                $message = "发送邮件失败，错误代码%s,错误信息%s";
-                return redirect()->back()->withInput($request->all())->withErrors(['email' => sprintf($message, $e->getCode(), $e->getMessage())]);
-            }
-            //
+        $key = $request->get("g-recaptcha-response");
+        if (empty($key)) {
+            return redirect()->back()->withInput($request->all())->withErrors(['email' => "验证码错误"]);
         }
+        $postData = array (
+            'secret'   => '6LcTzb4UAAAAADmR3Ftws-b6PpWGXXhzukVoHJjZ',
+            'response' => $key   //前端传过来的响应码
+        );
+        $postData = http_build_query($postData);
+        $options = array (
+            'http' => array (
+                'method'  => 'POST',
+                'header'  => 'Content-type:application/x-www-form-urlencoded',
+                'content' => $postData,
+                'timeout' => 15 * 60 // 超时时间（单位:s）
+            )
+        );
+        $context = stream_context_create($options);
+        $result = file_get_contents('https://www.recaptcha.net/recaptcha/api/siteverify', false, $context);
+        $json = json_decode($result, true);
+        //在这里处理返回的值
+        if (!$json[ 'success' ]) {
+            return redirect()->back()->withInput($request->all())->withErrors(['email' => "验证码错误"]);
+        }
+        $data = $request->only(['name', 'email', 'phone', 'message', 'code', 'submitType']);
+        $ip = $this->getRealIp();
+        try {
+            //
+            $content = 'Hi, 以下是您的邮件内容 <br>  ';
+            unset($data[ 'code' ]);
+            unset($data[ 'submitType' ]);
+            foreach ($data as $k => $v) {
+                $content .= $k . ":" . $v . '<br>';
+            }
+            $content .= "ip:" . $ip . '<br>';
+            SendEmailService::send_mail($content, "有人给你留言啦！");
+            return back()->with(["Success" => "信息已发送，感谢您的来信！"]);
+        } catch (\Exception $e) {
+            $message = "发送邮件失败，错误代码%s,错误信息%s";
+            return redirect()->back()->withInput($request->all())->withErrors(['email' => sprintf($message, $e->getCode(), $e->getMessage())]);
+        }
+        //
     }
     
     /**

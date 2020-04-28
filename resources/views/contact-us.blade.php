@@ -59,15 +59,10 @@
 
 
                         <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" name="code"
-                                                                   value="" id="code"
-                                                                   placeholder="请输入右下方的答案"/>
-															<i class="icon-envelope"></i>
-														</span>
-                            <button type="button" name="submitType" value="1" class="width-35 pull-right btn btn-sm btn-success">
-                               {!! $code !!}
-                            </button>
+
+                            <div class="g-recaptcha" data-sitekey="6LcTzb4UAAAAACcWNSsAkLcgUYLlKQTPz9ZSqIAw"></div>
+                            <br/>
+
                         </label>
 
                         @if (count($errors) > 0)
@@ -106,6 +101,7 @@
         </div>
         <!-- /widget-body -->
     </div><!-- /contact -->
+    <script src="https://www.recaptcha.net/recaptcha/api.js?hl=zh-CN" async defer></script>
     <script>
 
 
