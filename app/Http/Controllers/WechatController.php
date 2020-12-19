@@ -178,6 +178,7 @@ class WechatController extends Controller {
      */
     public function destroy1() {
         //
+        sleep(30);
         dd("wawawdadadadda");
     }
 }
