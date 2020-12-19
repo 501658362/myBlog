@@ -171,4 +171,13 @@ class WechatController extends Controller {
         //
         dd(22);
     }
+    /**
+     * Remove the specified resource from storage.
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy1() {
+        //
+        dd("wawawdadadadda");
+    }
 }
