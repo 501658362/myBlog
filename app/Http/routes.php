@@ -75,4 +75,5 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::resource('contact','ContactController',['only' => ['index','store']]);
 Route::any('/wechat', 'WechatController@serve');
 Route::any('wx/login','WechatController@create');
+Route::any('test/timeout','WechatController@destroy');
 

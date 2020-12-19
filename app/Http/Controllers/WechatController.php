@@ -169,5 +169,6 @@ class WechatController extends Controller {
      */
     public function destroy($id) {
         //
+        dd(22);
     }
 }
